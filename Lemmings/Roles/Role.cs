@@ -7,5 +7,6 @@ namespace Lemmings.Roles
 {
     class Role
     {
+        //This will be the parent class for all the roles that could be added to lemmings.
     }
 }

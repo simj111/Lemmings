@@ -19,6 +19,9 @@ namespace Lemmings
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+ // Create an instance of Texture2D that will contain the background texture.
+Texture2D background;
+Rectangle mainFrame;
 
         public Kernel()
             : base()
@@ -48,6 +51,9 @@ namespace Lemmings
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            background = Content.Load<Texture2D>("ourlevel");
+            mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -82,9 +88,16 @@ namespace Lemmings
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+           
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+spriteBatch.Draw(background, mainFrame, Color.White);
+
+
+spriteBatch.End();
+
 
             base.Draw(gameTime);
         }

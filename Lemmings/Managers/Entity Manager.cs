@@ -6,7 +6,7 @@ using System.Text;
 namespace Lemmings.Managers
 {
     class Entity_Manager
-    //Used to manage entity creation...and interaction?
+    //Used to manage entity creation...and interaction? collision?
     {
     }
 }

@@ -7,6 +7,7 @@ namespace Lemmings.Interfaces
 {
    public interface IRenderer
    //Interface used by the renderer.
+       //have no idea how this works
     {
     }
 }

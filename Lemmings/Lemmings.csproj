@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="EntityFactory.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
-    <Compile Include="Interfaces\IToken.cs" />
+    <Compile Include="Interfaces\IParentObject.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Managers\Entity Manager.cs" />
     <Compile Include="Managers\InputManager.cs" />
@@ -46,8 +46,9 @@
     <Compile Include="Renderer.cs" />
     <Compile Include="Roles\Blocker.cs" />
     <Compile Include="Roles\Role.cs" />
-    <Compile Include="Tokens\Lemming.cs" />
-    <Compile Include="Tokens\Token.cs" />
+    <Compile Include="Objects\Lemming.cs" />
+    <Compile Include="Objects\ParentObject.cs" />
+    <Compile Include="Roles\StandardRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -66,12 +67,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ourlevel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="SDL.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
