@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemmings.Roles
 {
-    class StandardRole : Role
+    class Default : ParentRole
     {
         //This will be the standard behaviour role that the lemmings will take untill they are interacted with. This will have to interact with the A* algorithm.
     }

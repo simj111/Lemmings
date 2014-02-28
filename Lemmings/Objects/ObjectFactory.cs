@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemmings
 {
-    class EntityFactory
+    class ObjectFactory
     //Used to actually create entities and assign default properties(spritebatch, position? etc.)
     {
     }
