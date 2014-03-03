@@ -26,7 +26,7 @@ namespace Lemmings.Objects
         public abstract bool isSolid { get; set; }
 
         //ID so that it is possible to interact with a certain object.
-        public abstract string objectID { get; set; }
+        public abstract int objectID { get; set; }
 
         //A method to actually draw the object on the screen, depending on their properties. 
         //This will be called by the Renderer.

@@ -18,7 +18,7 @@ namespace Lemmings.Objects
     {
         
         //----- Constructor -----
-        public Lemming(string ID)
+        public Lemming(int ID)
         {
             _position = new Vector2(400, 40);
             _spriteRectangle = new Rectangle(22, 0, 5, 10);
@@ -61,8 +61,8 @@ namespace Lemmings.Objects
             set { _isSolid = value; }
         }
 
-        private string _objectID;
-        public override string objectID
+        private int _objectID;
+        public override int objectID
         {
             get { return _objectID; }
             set { _objectID = value; }
@@ -83,7 +83,7 @@ namespace Lemmings.Objects
             base.DrawSelf(sBatch, texture);
         }
 
-        public void Terminate(string lemmingID)
+        public void Terminate(int lemmingID)
         {
             //Code to terminate the current lemming based off its ID
         }

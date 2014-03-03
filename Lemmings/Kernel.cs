@@ -28,8 +28,7 @@ namespace Lemmings
         Texture2D defaultLemmingSheet;
         Rectangle mainFrame;
 
-        //LEMMING POSITION TEST
-        Lemming lem1;
+        
         public Kernel()
             : base()
         {
@@ -48,7 +47,7 @@ namespace Lemmings
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            lem1 = new Lemming("1");
+            
             base.Initialize();
         }
 
@@ -109,7 +108,7 @@ namespace Lemmings
             spriteBatch.Draw(background, mainFrame, Color.White);
 
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
-            lem1.DrawSelf(spriteBatch, defaultLemmingSheet);
+            
 
             spriteBatch.End();
 
