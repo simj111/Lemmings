@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Lemmings.Objects;
+using Lemmings.Interfaces;
+using Lemmings.Managers;
 #endregion
 
 namespace Lemmings
@@ -19,14 +22,20 @@ namespace Lemmings
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
- // Create an instance of Texture2D that will contain the background texture.
-Texture2D background;
-Rectangle mainFrame;
 
+        // Create an instance of Texture2D that will contain the background texture.
+        Texture2D background;
+        Texture2D defaultLemmingSheet;
+        Rectangle mainFrame;
+
+        //LEMMING POSITION TEST
+        Lemming lem1;
         public Kernel()
             : base()
         {
-            graphics = new GraphicsDeviceManager(this);
+
+                graphics = new GraphicsDeviceManager(this);
+
             Content.RootDirectory = "Content";
         }
 
@@ -39,7 +48,7 @@ Rectangle mainFrame;
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            lem1 = new Lemming("1");
             base.Initialize();
         }
 
@@ -52,6 +61,10 @@ Rectangle mainFrame;
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             background = Content.Load<Texture2D>("ourlevel");
+
+            //For testing purposes until we know where to load the textures from.
+            defaultLemmingSheet = Content.Load<Texture2D>("Lemmings_Sheet_1");
+
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
 
@@ -93,10 +106,12 @@ Rectangle mainFrame;
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-spriteBatch.Draw(background, mainFrame, Color.White);
+            spriteBatch.Draw(background, mainFrame, Color.White);
 
+            //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
+            lem1.DrawSelf(spriteBatch, defaultLemmingSheet);
 
-spriteBatch.End();
+            spriteBatch.End();
 
 
             base.Draw(gameTime);
