@@ -23,6 +23,7 @@ namespace Lemmings
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ParticleEngine particleEngine;
+        InputManager inputManager;
 
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
@@ -46,7 +47,7 @@ namespace Lemmings
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+            inputManager = new InputManager();
             base.Initialize();
             this.IsMouseVisible = true;
         }
@@ -92,10 +93,11 @@ namespace Lemmings
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            inputManager.update();
 
             // TODO: Add your update logic here
             base.Update(gameTime);
-
+           
             //Particle engine initialisation
             particleEngine.EmitterLocation = new Vector2(300,300);
             particleEngine.Update();
