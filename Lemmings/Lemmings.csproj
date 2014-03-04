@@ -35,20 +35,23 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Draw.cs" />
+    <Compile Include="Scene\SceneGraph.cs" />
     <Compile Include="Objects\ObjectFactory.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Managers\ObjectManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Effects\ParticleEngine.cs" />
+    <Compile Include="Effects\ParticleSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer.cs" />
+    <Compile Include="Scene\Renderer.cs" />
     <Compile Include="Roles\Blocker.cs" />
     <Compile Include="Roles\ParentRole.cs" />
     <Compile Include="Objects\Lemming.cs" />
     <Compile Include="Objects\ParentObject.cs" />
     <Compile Include="Roles\Default.cs" />
+    <Compile Include="Scene\SceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -67,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\orange.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Lemmings_Sheet_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -77,6 +86,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ourlevel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\yellow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

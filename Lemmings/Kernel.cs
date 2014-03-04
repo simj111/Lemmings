@@ -22,18 +22,17 @@ namespace Lemmings
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ParticleEngine particleEngine;
 
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
         Texture2D defaultLemmingSheet;
         Rectangle mainFrame;
-
         
         public Kernel()
             : base()
         {
-
-                graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
 
             Content.RootDirectory = "Content";
         }
@@ -49,6 +48,7 @@ namespace Lemmings
             // TODO: Add your initialization logic here
             
             base.Initialize();
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -64,10 +64,14 @@ namespace Lemmings
             //For testing purposes until we know where to load the textures from.
             defaultLemmingSheet = Content.Load<Texture2D>("Lemmings_Sheet_1");
 
+            //particles stuff which needs to be moved
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-
-
-            // TODO: use this.Content to load your game content here
+            List<Texture2D> textures = new List<Texture2D>();
+            textures.Add(Content.Load<Texture2D>("red"));
+            textures.Add(Content.Load<Texture2D>("yellow"));
+            textures.Add(Content.Load<Texture2D>("orange"));
+            particleEngine = new ParticleEngine(textures, new Vector2(400, 240));
+   
         }
 
         /// <summary>
@@ -90,8 +94,11 @@ namespace Lemmings
                 Exit();
 
             // TODO: Add your update logic here
-
             base.Update(gameTime);
+
+            //Particle engine initialisation
+            particleEngine.EmitterLocation = new Vector2(300,300);
+            particleEngine.Update();
         }
 
         /// <summary>
@@ -106,7 +113,7 @@ namespace Lemmings
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, mainFrame, Color.White);
-
+            particleEngine.Draw(spriteBatch);
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
             
 
