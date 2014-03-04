@@ -20,6 +20,7 @@ namespace Lemmings
     public class Kernel : Game
     //Kernel will be used to initialise and create stuff, factory, managers etc.
     {
+        #region DataMembers
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ParticleEngine particleEngine;
@@ -29,7 +30,9 @@ namespace Lemmings
         Texture2D background;
         Texture2D defaultLemmingSheet;
         Rectangle mainFrame;
-        
+        #endregion DataMembers
+
+        #region Constructor
         public Kernel()
             : base()
         {
@@ -37,7 +40,9 @@ namespace Lemmings
 
             Content.RootDirectory = "Content";
         }
+        #endregion Constructor
 
+        #region Methods
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -109,7 +114,6 @@ namespace Lemmings
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-           
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -117,12 +121,15 @@ namespace Lemmings
             spriteBatch.Draw(background, mainFrame, Color.White);
             particleEngine.Draw(spriteBatch);
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
-            
 
             spriteBatch.End();
-
-
             base.Draw(gameTime);
         }
+        #endregion Methods
+        
+        
+        
+
+       
     }
 }

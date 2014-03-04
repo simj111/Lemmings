@@ -7,7 +7,20 @@ namespace Lemmings.Managers
 {
     class SceneGraph
     {
+        #region DataMembers
 
+        #endregion DataMembers
 
+        #region Properties
+
+        #endregion Properties
+
+        #region Constructor
+
+        #endregion Constructor
+
+        #region Methods
+
+        #endregion Methods
     }
 }

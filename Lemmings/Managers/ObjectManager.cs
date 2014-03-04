@@ -9,7 +9,17 @@ namespace Lemmings.Managers
     class ObjectManager
     //Used to manage entity creation...and interaction? collision?
     {
-        //----- Constructor -----
+        #region DataMembers
+        ObjectFactory factory;
+        IList<string> objectsToCreate; 
+        IList<ParentObject> objectsToDraw;
+        #endregion DataMembers
+
+        #region Properties
+
+        #endregion Properties
+
+        #region Constructor
         public ObjectManager(ObjectFactory objectFactory)
         {
             //We call this method to define which are the default objects that the factory will need to create
@@ -20,16 +30,12 @@ namespace Lemmings.Managers
             //objectsToDraw = factory.createObjects(objectsToCreate) can be used to pass in the current objects to be created in factory
             
         }
+        #endregion Constructor
 
-        //----- Properties -----
-        ObjectFactory factory;
-        IList<ParentObject> objectsToCreate;
-        IList<ParentObject> objectsToDraw;
-
-        //----- Methods -----
+        #region Methods
         public void DefaultObjects()
         {
-            //add the default objects that need to be drawn to the list "objectsToCreate".
+            //add the default objects that need to be created to the list "objectsToCreate".
         }
 
         public void CallRendererToDraw(IList<ParentObject>createThesePlease)
@@ -45,6 +51,8 @@ namespace Lemmings.Managers
         }
 
         // Public void ObjectsCollide(int objectID1, int objectID2) [Potential collision method]
+        #endregion Methods
+        
     
 
     }

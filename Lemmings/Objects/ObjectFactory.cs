@@ -11,37 +11,38 @@ namespace Lemmings.Objects
     class ObjectFactory
     //Used to actually create entities and assign default properties(spritebatch, position? etc.)
     {
-
-        //----- Constructor -----
-        public ObjectFactory(IList<ParentObject> defaultObjects)
-        {
-            //Timer object properties
-            lemmingDelay = new Timer(5000);
-            lemmingDelay.Enabled = false;
-            lemmingDelay.Elapsed += new ElapsedEventHandler(LemmingDelayTime);
-
-            //The objects which need to be created first get put into the objectsForCreation list.
-            objectsForCreation = defaultObjects;
-            
-        }
-
-        //----- Properties -----
-        private static Timer lemmingDelay;
-        private IList<ParentObject> objectsForCreation;
+        
+        #region DataMembers
         public enum ObjectType //The types of objects which can be created.
         {
             Lemming,
             Floor,
         }
-        
-        //----- Methods -----
-        public IList<ParentObject>CreateObjects(IList<ParentObject> objects, ObjectType typeOfObject)
+        private static Timer lemmingDelay;
+        private IList<string> objectsForCreation;
+        #endregion DataMembers
+
+        #region Properties
+
+        #endregion Properties
+
+        #region Constructor
+        public ObjectFactory()
         {
-            objectsForCreation = objects;
+            //Timer object properties
+            lemmingDelay = new Timer(5000);
+            lemmingDelay.Enabled = false;
+            lemmingDelay.Elapsed += new ElapsedEventHandler(LemmingDelayTime);
+        }
+        #endregion Constructor
+
+        #region Methods
+        public void CreateObjects(IList<string> objects, ObjectType typeOfObject)
+        {
 
             //Creaton code goes here
 
-            return objectsForCreation;
+  
         }
 
        private static void LemmingDelayTime(object source, ElapsedEventArgs e)
@@ -51,6 +52,9 @@ namespace Lemmings.Objects
            //The timer will become enable upon lemming creation.
            lemmingDelay.Enabled = false;
        }
+        #endregion Methods
+        
+        
       
           
     }

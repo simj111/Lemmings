@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Regions.cs" />
     <Compile Include="Scene\SceneGraph.cs" />
     <Compile Include="Objects\ObjectFactory.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />

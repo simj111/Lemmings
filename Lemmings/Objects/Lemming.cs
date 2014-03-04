@@ -16,33 +16,27 @@ namespace Lemmings.Objects
     //Will use the "Roles" class. (To assign roles to lemmings?)
         // Will need to be able to specify the different lemmings, I.E if there are 10 created, which will change role when interacted with. ID?)
     {
-        
-        //----- Constructor -----
-        public Lemming(int ID)
-        {
-            _position = new Vector2(400, 40);
-            _spriteRectangle = new Rectangle(22, 0, 5, 10);
-            _isSolid = false;
-            _objectID = ID;
-            speedX = 1f;
-            speedY = 1f;
+        #region DataMembers
+        private Vector2 _position; //Needed for the set in position override. Underscore is good code practice for private variables that are used for get and set.
+        private Rectangle _spriteRectangle; 
+        private bool _isSolid;
+        private int _objectID;
+        public string roleName;
+        //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
+        public float speedX; //Horizontal movement speed of the lemming.
+        public float speedY; //How fast the lemming falls.
 
-            //When a lemming is first created it is in a "default" role
-            roleName = "Default";
-          ParentRole currentRole = new Default();
-        }
+        #endregion DataMembers
 
-        //----- Properties -----
-        //Needed for the set in position override.
-        //Underscore is good code practice for private variables that are used for get and set.
-        private Vector2 _position; 
+
+
+        #region Properties
         public override Vector2 position
         {
             get { return _position; }
             set { _position = value; }
         }
 
-        private Rectangle _spriteRectangle;
         public override Rectangle spriteRectangle
         {
             get { return _spriteRectangle; }
@@ -54,33 +48,44 @@ namespace Lemmings.Objects
             get { return Color.White; }
         }
 
-        private bool _isSolid;
         public override bool isSolid
         {
             get { return _isSolid; }
             set { _isSolid = value; }
         }
-
-        private int _objectID;
+       
         public override int objectID
         {
             get { return _objectID; }
             set { _objectID = value; }
         }
+        #endregion Properties
 
-        public string roleName;
-        //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
+        #region Constructor
+        public Lemming(int ID)
+        {
+            _position = new Vector2(400, 40);
+            _spriteRectangle = new Rectangle(22, 0, 5, 10);
+            _isSolid = false;
+            _objectID = ID;
+            speedX = 1f;
+            speedY = 1f;
 
-        //Horizontal movement speed of the lemming.
-        public float speedX;
+            //When a lemming is first created it is in a "default" role
+            roleName = "Default";
+            ParentRole currentRole = new Default(this);
+        }
+        #endregion Constructor
 
-        //How fast the lemming falls.
-        public float speedY;
-
-        //----- Methods -----
+        #region Methods
         public override void DrawSelf(SpriteBatch sBatch, Texture2D texture)
         {
             base.DrawSelf(sBatch, texture);
+        }
+
+        public override int ReturnObjectID()
+        {
+            return base.ReturnObjectID();
         }
 
         public void Terminate(int lemmingID)
@@ -88,5 +93,7 @@ namespace Lemmings.Objects
             //Code to terminate the current lemming based off its ID
         }
         //Potentially something for collision and animation needs to be added into the properties and method sections.
+        #endregion Methods
+        
     }
 }

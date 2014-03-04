@@ -10,5 +10,20 @@ namespace Lemmings
     //Used to render the most up to date frames on screen.
     //Gets a list of current entities that need to be drawn from manager(Not sure yet if render manager or entity manager?) NEED TO DISCUSS!
     {
+        #region DataMembers
+
+        #endregion DataMembers
+
+        #region Properties
+
+        #endregion Properties
+
+        #region Constructor
+
+        #endregion Constructor
+
+        #region Methods
+
+        #endregion Methods
     }
 }
