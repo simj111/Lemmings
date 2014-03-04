@@ -9,11 +9,18 @@ namespace Lemmings
 {
     public class ParticleEngine
     {
+        #region DataMembers
         private Random random;
         public Vector2 EmitterLocation { get; set; }
         private List<ParticleSystem> particles;
         private List<Texture2D> textures;
+        #endregion DataMembers
 
+        #region Properties
+
+        #endregion Properties
+
+        #region Constructor
         public ParticleEngine(List<Texture2D> textures, Vector2 location)
         {
             EmitterLocation = location;
@@ -21,7 +28,9 @@ namespace Lemmings
             this.particles = new List<ParticleSystem>();
             random = new Random();
         }
+        #endregion Constructor
 
+        #region Methods
         private ParticleSystem GenerateNewParticle()
         {
             Texture2D texture = textures[random.Next(textures.Count)];
@@ -60,8 +69,6 @@ namespace Lemmings
                 }
             }
         }
-
-
         public void Draw(SpriteBatch spriteBatch)
         {
             
@@ -71,11 +78,6 @@ namespace Lemmings
             }
           
         }
-
-
-
+        #endregion Methods
     }
-
-
-
 }

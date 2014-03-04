@@ -10,6 +10,7 @@ namespace Lemmings
 {
     public class ParticleSystem
     {
+        #region DataMembers
         public Texture2D Texture { get; set; }        // The texture that will be drawn to represent the particle
         public Vector2 Position { get; set; }        // The current position of the particle        
         public Vector2 Velocity { get; set; }        // The speed of the particle at the current instance
@@ -18,8 +19,13 @@ namespace Lemmings
         public Color Color { get; set; }            // The color of the particle
         public float Size { get; set; }                // The size of the particle
         public int TTL { get; set; }                // The 'time to live' of the particle
+        #endregion DataMembers
 
+        #region Properties
 
+        #endregion Properties
+
+        #region Constructor
         public ParticleSystem (Texture2D texture, Vector2 position, Vector2 velocity,
             float angle, float angularVelocity, Color color, float size, int ttl)
                 {
@@ -32,8 +38,9 @@ namespace Lemmings
                   Size = size;
                   TTL = ttl;
                 }
+        #endregion Constructor
 
-
+        #region Methods
         public void Update()
         {
             TTL--;
@@ -49,8 +56,6 @@ namespace Lemmings
             spriteBatch.Draw(Texture, Position, sourceRectangle, Color,
                 Angle, origin, Size, SpriteEffects.None, 0f);
         }
-
-
-
+        #endregion Methods
     }
 }
