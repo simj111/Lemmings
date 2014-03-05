@@ -11,8 +11,9 @@ namespace Lemmings.Managers
     {
         #region DataMembers
         ObjectFactory factory;
-        IList<string> objectsToCreate; 
-        IList<ParentObject> objectsToDraw;
+        Renderer renderer;
+        private IList<string> objectsToCreate = null; 
+        private IList<ParentObject> objectsToDraw = null;
         #endregion DataMembers
 
         #region Properties
@@ -20,15 +21,18 @@ namespace Lemmings.Managers
         #endregion Properties
 
         #region Constructor
-        public ObjectManager(ObjectFactory objectFactory)
+        public ObjectManager(ObjectFactory objectFactory, Renderer createdRenderer)
         {
+            objectsToCreate = new List<string>();
+            objectsToDraw = new List<ParentObject>();
+            //If we have kernel create the factory and renderer we can use it here
+            factory = objectFactory;
+            renderer = createdRenderer;
+
             //We call this method to define which are the default objects that the factory will need to create
             DefaultObjects();
-
-            //If we have kernel create the factory we can use it here
-            factory = objectFactory;
-            //objectsToDraw = factory.createObjects(objectsToCreate) can be used to pass in the current objects to be created in factory
-            
+            //Makes the factory create after default objects have been added to a list.
+            CallFactoryToCreate();
         }
         #endregion Constructor
 
@@ -36,15 +40,43 @@ namespace Lemmings.Managers
         public void DefaultObjects()
         {
             //add the default objects that need to be created to the list "objectsToCreate".
+            
+            //Testing lemming creation
+            objectsToCreate.Add("Lemming");
+            objectsToCreate.Add("Lemming");
         }
 
-        public void CallRendererToDraw(IList<ParentObject>createThesePlease)
+        //This method calls the factory object to create all objects in the "objectsToCreate" list based off the string within them
+        public void CallFactoryToCreate()
         {
-           
+                foreach (string obj in objectsToCreate)
+                {
+                    if (obj.Contains("Lemming") || obj.Contains("lemming"))
+                    {
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
+                    }
+                    
+                }
+                objectsToCreate.Clear();
+            
+            
+            
+        }
+
+        public void CallRendererToDraw()
+        {
+            renderer.DrawEntities(objectsToDraw);
             //Needs to return a list of parent objects that are now created.
             //These will then get added to objectsToDraw.
         }
 
+        public void UpdateEntities()
+        {
+            foreach (Lemming lem in objectsToDraw)
+            {
+                lem.currentRole.UpdateLemming();
+            }
+        }
         public void TerminateObject(int objectID, Lemming objectToTerminate)
         {
             objectToTerminate.Terminate(objectID);

@@ -25,6 +25,9 @@ namespace Lemmings
         SpriteBatch spriteBatch;
         ParticleEngine particleEngine;
         InputManager inputManager;
+        ObjectManager kObjectManager;
+        ObjectFactory kObjectFactory;
+        Renderer kRenderer;
 
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
@@ -53,6 +56,9 @@ namespace Lemmings
         {
             // TODO: Add your initialization logic here
             inputManager = new InputManager();
+            
+            kObjectFactory = new ObjectFactory();
+            
             base.Initialize();
             this.IsMouseVisible = true;
         }
@@ -77,7 +83,9 @@ namespace Lemmings
             textures.Add(Content.Load<Texture2D>("yellow"));
             textures.Add(Content.Load<Texture2D>("orange"));
             particleEngine = new ParticleEngine(textures, new Vector2(400, 240));
-   
+           
+            kRenderer = new Renderer(spriteBatch, defaultLemmingSheet); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
+            kObjectManager = new ObjectManager(kObjectFactory, kRenderer);
         }
 
         /// <summary>
@@ -99,13 +107,14 @@ namespace Lemmings
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputManager.update();
-
+            
             // TODO: Add your update logic here
             base.Update(gameTime);
            
             //Particle engine initialisation
             particleEngine.EmitterLocation = new Vector2(300,300);
             particleEngine.Update();
+            kObjectManager.UpdateEntities();
         }
 
         /// <summary>
@@ -120,8 +129,9 @@ namespace Lemmings
 
             spriteBatch.Draw(background, mainFrame, Color.White);
             particleEngine.Draw(spriteBatch);
+            
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
-
+            kObjectManager.CallRendererToDraw();
             spriteBatch.End();
             base.Draw(gameTime);
         }

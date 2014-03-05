@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Lemmings.Roles;
+using Lemmings.Interfaces;
 
 
 namespace Lemmings.Objects
@@ -22,13 +23,12 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         public string roleName;
+        private string changeJob;
         //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
         public float speedX; //Horizontal movement speed of the lemming.
         public float speedY; //How fast the lemming falls.
-
+        public IRole currentRole;
         #endregion DataMembers
-
-
 
         #region Properties
         public override Vector2 position
@@ -73,7 +73,7 @@ namespace Lemmings.Objects
 
             //When a lemming is first created it is in a "default" role
             roleName = "Default";
-            ParentRole currentRole = new Default(this);
+            currentRole = new Default(this) as IRole;
         }
         #endregion Constructor
 
@@ -91,6 +91,20 @@ namespace Lemmings.Objects
         public void Terminate(int lemmingID)
         {
             //Code to terminate the current lemming based off its ID
+        }
+
+        //When a mouse clicks a lemming we can make a string get passed to a lemming that says which role it needs to switch too
+        //The lemming would then change it's current role to be whatever string is pased in e.g. blocker
+        public void ChangeRole(string roleChange)
+        {
+            changeJob = roleChange;
+            if (changeJob == "Blocker")
+            {
+                roleName = changeJob;
+                currentRole = new Blocker(this);
+
+            }
+
         }
         //Potentially something for collision and animation needs to be added into the properties and method sections.
         #endregion Methods
