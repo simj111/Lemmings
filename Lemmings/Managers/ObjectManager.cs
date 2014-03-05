@@ -43,12 +43,17 @@ namespace Lemmings.Managers
             
             //Testing lemming creation
             objectsToCreate.Add("Lemming");
-            objectsToCreate.Add("Lemming");
+            
         }
 
         //This method calls the factory object to create all objects in the "objectsToCreate" list based off the string within them
         public void CallFactoryToCreate()
         {
+            //Somehwere in here we need to force it to create lemmings last because they need the 5 second interval between them.
+            //Other objects, spider, floor etc. can be created and drawn at the same time as the first lemming however.
+
+            //Goes through each string object in the objectsToCreate list and makes the factory create objects based off of it. 
+            //The object is then added to the objectsToDraw list of parent objects.
                 foreach (string obj in objectsToCreate)
                 {
                     if (obj.Contains("Lemming") || obj.Contains("lemming"))

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Timers;
 
+
 namespace Lemmings.Objects
 { 
     public enum ObjectType //The types of objects which can be created.
@@ -23,7 +24,7 @@ namespace Lemmings.Objects
         private static Timer lemmingDelay;
         ParentObject newObject = null;
         int increaseObjectID;
-      
+        
         #endregion DataMembers
 
         #region Properties
@@ -34,9 +35,11 @@ namespace Lemmings.Objects
         public ObjectFactory()
         {
             //Timer object properties
-            lemmingDelay = new Timer(2000);
+            lemmingDelay = new Timer(5000);
+            lemmingDelay.Interval = 5000;
             lemmingDelay.Enabled = false;
             lemmingDelay.Elapsed += new ElapsedEventHandler(LemmingDelayTime);
+            
             increaseObjectID = 0;
         }
         #endregion Constructor
@@ -44,14 +47,15 @@ namespace Lemmings.Objects
         #region Methods
         public ParentObject CreateObjects(ObjectType typeOfObject)
         {
-           if (lemmingDelay.Enabled == false)
-            {
-                //Creaton code goes here
+            
+                //Creation code goes here
                 switch (typeOfObject)
                 {
                     case ObjectType.Lemming:
-                        newObject = new Lemming(increaseObjectID);
-                        lemmingDelay.Enabled = true;
+                        
+                            newObject = new Lemming(increaseObjectID);
+                            lemmingDelay.Enabled = true;
+                        //The timer needs to go somewhere else in the program...I think
                         break;
 
                     case ObjectType.Floor:
@@ -62,19 +66,19 @@ namespace Lemmings.Objects
                         //newObject = new Spider();
                         break;
                 }
-                }
+                
                 increaseObjectID++;
                 return newObject;
            
         }
 
-       private void LemmingDelayTime(object source, ElapsedEventArgs e)
+       private static void LemmingDelayTime(object source, ElapsedEventArgs e)
        {
            //This will only get called when the timer reaches 5 seconds.
            //The factory will only create lemmings while the timer is not enabled.
            //The timer will become enabled upon lemming creation.
            lemmingDelay.Enabled = false;
-           
+      
        }
         #endregion Methods
         

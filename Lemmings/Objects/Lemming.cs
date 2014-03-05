@@ -69,7 +69,7 @@ namespace Lemmings.Objects
             _isSolid = false;
             _objectID = ID;
             speedX = 1f;
-            speedY = 1f;
+            speedY = 0.5f;
 
             //When a lemming is first created it is in a "default" role
             roleName = "Default";
