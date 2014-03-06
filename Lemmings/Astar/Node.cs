@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemmings.Astar
 {
-    class Node
+    public class Node
     {
         #region DataMembers
         private string _data; 

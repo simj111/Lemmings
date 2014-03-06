@@ -63,7 +63,7 @@ namespace Lemmings.Objects
                         break;
 
                     case ObjectType.Spider:
-                        //newObject = new Spider();
+                        newObject = new SpiderEnemy(increaseObjectID);
                         break;
                 }
                 

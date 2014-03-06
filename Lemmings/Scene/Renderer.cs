@@ -15,7 +15,7 @@ namespace Lemmings
     {
         #region DataMembers
         SpriteBatch mySpriteBatch;
-        Texture2D currentSpriteSheet;
+        List<Tuple<Texture2D, string>> currentSpriteSheet = null;
         #endregion DataMembers
 
         #region Properties
@@ -23,10 +23,10 @@ namespace Lemmings
         #endregion Properties
 
         #region Constructor
-        public Renderer(SpriteBatch sBatch, Texture2D spriteSheet) //The spritesheet is gonna need to be passed to the entity somehow at a later point.
+        public Renderer(SpriteBatch sBatch, List<Tuple<Texture2D, string>> allSpriteSheets) //The spritesheet is gonna need to be passed to the entity somehow at a later point.
         {
             mySpriteBatch = sBatch;
-            currentSpriteSheet = spriteSheet;
+            currentSpriteSheet = allSpriteSheets;
         }
         #endregion Constructor
 
@@ -35,7 +35,11 @@ namespace Lemmings
         {
             foreach (ParentObject drawableObject in CurrentEntitiesToDraw)
             {
+                if (drawableObject.ToString() == "Lemming")
+                {
+                    
                 drawableObject.DrawSelf(mySpriteBatch,currentSpriteSheet);
+                }
             }
         }
 

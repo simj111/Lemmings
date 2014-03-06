@@ -43,6 +43,7 @@ namespace Lemmings.Managers
             
             //Testing lemming creation
             objectsToCreate.Add("Lemming");
+            objectsToCreate.Add("Spider");
           
         }
 
@@ -59,6 +60,10 @@ namespace Lemmings.Managers
                     if (obj.Contains("Lemming") || obj.Contains("lemming"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
+                    }
+                    if (obj.Contains("Spider"))
+                    {
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
                     }
                     
                 }

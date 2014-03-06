@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lemmings.Astar
 {
-    class BinaryTree
+    public class BinaryTree
     {
         #region DataMembers
 
@@ -14,17 +14,28 @@ namespace Lemmings.Astar
         #endregion DataMembers
 
         #region Properties
-        public Root
+        public BinaryTreeNode Root
         {
-    }
+            get { return root; }
+            set { root = value; }
+        }
+
+        
         #endregion Properties
 
         #region Constructor
-
+        public BinaryTree()
+        {
+            root = null;
+        }
         #endregion Constructor
 
         #region Methods
 
+        public void Clear()
+        {
+            root = null;
+        }
         #endregion Methods
 
 

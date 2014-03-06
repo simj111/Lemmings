@@ -32,6 +32,8 @@ namespace Lemmings
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
         Texture2D defaultLemmingSheet;
+        Texture2D spiderEnemySheet;
+       List<Tuple<Texture2D,string>> allSheets;
         Rectangle mainFrame;
         #endregion DataMembers
 
@@ -75,7 +77,10 @@ namespace Lemmings
 
             //For testing purposes until we know where to load the textures from.
             defaultLemmingSheet = Content.Load<Texture2D>("Lemmings_Sheet_1");
+            allSheets.Add(Tuple.Create(defaultLemmingSheet, "LemmingSheet"));
 
+            spiderEnemySheet = Content.Load<Texture2D>("spider");
+            allSheets.Add(Tuple.Create(spiderEnemySheet, "SpiderSheet"));
             //particles stuff which needs to be moved, partial tutorial done.
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             List<Texture2D> textures = new List<Texture2D>();
@@ -83,8 +88,9 @@ namespace Lemmings
             textures.Add(Content.Load<Texture2D>("yellow"));
             textures.Add(Content.Load<Texture2D>("orange"));
             particleEngine = new ParticleEngine(textures, new Vector2(400, 240));
-           
-            kRenderer = new Renderer(spriteBatch, defaultLemmingSheet); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
+
+            
+            kRenderer = new Renderer(spriteBatch, allSheets); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
             kObjectManager = new ObjectManager(kObjectFactory, kRenderer);
         }
 
@@ -114,7 +120,7 @@ namespace Lemmings
             //Particle engine initialisation
             //particleEngine.EmitterLocation = new Vector2(300,300);
            // particleEngine.Update();
-            kObjectManager.UpdateEntities();
+           // kObjectManager.UpdateEntities();
         }
 
         /// <summary>
