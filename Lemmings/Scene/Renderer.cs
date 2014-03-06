@@ -15,7 +15,9 @@ namespace Lemmings
     {
         #region DataMembers
         SpriteBatch mySpriteBatch;
-        List<Tuple<Texture2D, string>> currentSpriteSheet = null;
+        List<Tuple<Texture2D, string>> currentSpriteSheets = null;
+        string objectName;
+        string sheetName;
         #endregion DataMembers
 
         #region Properties
@@ -26,7 +28,7 @@ namespace Lemmings
         public Renderer(SpriteBatch sBatch, List<Tuple<Texture2D, string>> allSpriteSheets) //The spritesheet is gonna need to be passed to the entity somehow at a later point.
         {
             mySpriteBatch = sBatch;
-            currentSpriteSheet = allSpriteSheets;
+            currentSpriteSheets = allSpriteSheets;
         }
         #endregion Constructor
 
@@ -35,11 +37,33 @@ namespace Lemmings
         {
             foreach (ParentObject drawableObject in CurrentEntitiesToDraw)
             {
-                if (drawableObject.ToString() == "Lemming")
+                objectName = drawableObject.ToString();
+
+                if (objectName.Contains("Spider"))
                 {
-                    
-                drawableObject.DrawSelf(mySpriteBatch,currentSpriteSheet);
+
+                    foreach (Tuple<Texture2D, string> sheets in currentSpriteSheets)
+                    {
+                        if (sheets.Item2.Contains("Spider"))
+                        {
+                            drawableObject.DrawSelf(mySpriteBatch, sheets.Item1);
+                        }
+                    }
                 }
+
+                else if (objectName.Contains("Lemming"))
+                {
+
+                    foreach (Tuple<Texture2D, string> sheets in currentSpriteSheets)
+                    {
+                        if (sheets.Item2.Contains("Lemming"))
+                        {
+                            drawableObject.DrawSelf(mySpriteBatch, sheets.Item1);
+                        }
+                    }
+                }
+
+
             }
         }
 

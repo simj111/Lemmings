@@ -33,7 +33,7 @@ namespace Lemmings
         Texture2D background;
         Texture2D defaultLemmingSheet;
         Texture2D spiderEnemySheet;
-       List<Tuple<Texture2D,string>> allSheets;
+       List<Tuple<Texture2D,string>> allSheets = null;
         Rectangle mainFrame;
         #endregion DataMembers
 
@@ -58,7 +58,7 @@ namespace Lemmings
         {
             // TODO: Add your initialization logic here
             inputManager = new InputManager();
-            
+            allSheets = new List<Tuple<Texture2D, string>>();
             kObjectFactory = new ObjectFactory();
             
             base.Initialize();

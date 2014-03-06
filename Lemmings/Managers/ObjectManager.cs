@@ -43,6 +43,9 @@ namespace Lemmings.Managers
             
             //Testing lemming creation
             objectsToCreate.Add("Lemming");
+            objectsToCreate.Add("Lemming");
+
+            objectsToCreate.Add("Spider");
             objectsToCreate.Add("Spider");
           
         }
@@ -68,7 +71,9 @@ namespace Lemmings.Managers
                     
                 }
                 objectsToCreate.Clear();
-            
+                //This code is just to force one of the lemmings and spiders to appear in a different place
+                objectsToDraw[1].position = new Microsoft.Xna.Framework.Vector2(100, 150);
+                objectsToDraw[3].position = new Microsoft.Xna.Framework.Vector2(200, 300);
             
             
         }

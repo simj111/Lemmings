@@ -61,7 +61,7 @@ namespace Lemmings.Objects
 
         public SpiderEnemy(int ID)
         {
-            _position = new Vector2(400, 40);
+            _position = new Vector2(400, 300);
             _spriteRectangle = new Rectangle(0, 1, 33, 32);
             _isSolid = false;
             _objectID = ID;
