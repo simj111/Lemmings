@@ -43,7 +43,7 @@ namespace Lemmings.Managers
             
             //Testing lemming creation
             objectsToCreate.Add("Lemming");
-            
+          
         }
 
         //This method calls the factory object to create all objects in the "objectsToCreate" list based off the string within them
@@ -75,6 +75,7 @@ namespace Lemmings.Managers
             //These will then get added to objectsToDraw.
         }
 
+
         public void UpdateEntities()
         {
             foreach (Lemming lem in objectsToDraw)
@@ -82,6 +83,8 @@ namespace Lemmings.Managers
                 lem.currentRole.UpdateLemming();
             }
         }
+
+
         public void TerminateObject(int objectID, Lemming objectToTerminate)
         {
             objectToTerminate.Terminate(objectID);

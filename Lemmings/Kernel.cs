@@ -76,7 +76,7 @@ namespace Lemmings
             //For testing purposes until we know where to load the textures from.
             defaultLemmingSheet = Content.Load<Texture2D>("Lemmings_Sheet_1");
 
-            //particles stuff which needs to be moved
+            //particles stuff which needs to be moved, partial tutorial done.
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             List<Texture2D> textures = new List<Texture2D>();
             textures.Add(Content.Load<Texture2D>("red"));
@@ -112,8 +112,8 @@ namespace Lemmings
             base.Update(gameTime);
            
             //Particle engine initialisation
-            particleEngine.EmitterLocation = new Vector2(300,300);
-            particleEngine.Update();
+            //particleEngine.EmitterLocation = new Vector2(300,300);
+           // particleEngine.Update();
             kObjectManager.UpdateEntities();
         }
 

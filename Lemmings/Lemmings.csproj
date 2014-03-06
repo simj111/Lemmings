@@ -35,6 +35,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Astar\BinaryTree.cs" />
+    <Compile Include="Astar\BinaryTreeNode.cs" />
+    <Compile Include="Astar\Node.cs" />
     <Compile Include="Interfaces\IRole.cs" />
     <Compile Include="Regions.cs" />
     <Compile Include="Scene\SceneGraph.cs" />
