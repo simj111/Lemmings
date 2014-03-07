@@ -14,6 +14,7 @@ namespace Lemmings.Objects
             Lemming,
             Floor,
             Spider,
+            Edge,
         }
     class ObjectFactory
     //Used to actually create entities and assign default properties(spritebatch, position? etc.)
@@ -24,6 +25,7 @@ namespace Lemmings.Objects
         private static Timer lemmingDelay;
         ParentObject newObject = null;
         int increaseObjectID;
+        string edgeType;
         
         #endregion DataMembers
 
@@ -48,13 +50,12 @@ namespace Lemmings.Objects
         public ParentObject CreateObjects(ObjectType typeOfObject)
         {
             
-                //Creation code goes here
+              //This switch case checks what type of object has been passed in and creates an object based off the ObjectType enum.
                 switch (typeOfObject)
                 {
                     case ObjectType.Lemming:
-                        
-                            newObject = new Lemming(increaseObjectID);
-                            lemmingDelay.Enabled = true;
+                        newObject = new Lemming(increaseObjectID);
+                        lemmingDelay.Enabled = true;
                         //The timer needs to go somewhere else in the program...I think
                         break;
 
@@ -65,13 +66,21 @@ namespace Lemmings.Objects
                     case ObjectType.Spider:
                         newObject = new SpiderEnemy(increaseObjectID);
                         break;
+                      
+                    case ObjectType.Edge:
+                        newObject = new Edge(edgeType, increaseObjectID);
+                        break;
                 }
                 
                 increaseObjectID++;
                 return newObject;
            
         }
-
+        //This method gets the type of edge that needs to be created to pass into the constructor of the Edge object.
+        public void GetEdgeType(string typeOfEdge)
+        {
+            edgeType = typeOfEdge;
+        }
        private static void LemmingDelayTime(object source, ElapsedEventArgs e)
        {
            //This will only get called when the timer reaches 5 seconds.

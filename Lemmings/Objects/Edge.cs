@@ -6,23 +6,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-
 namespace Lemmings.Objects
 {
-    class SpiderEnemy : ParentObject
+    class Edge : ParentObject
     {
-         #region DataMembers
+        #region DataMembers
 
         private Vector2 _position; //Needed for the set in position override. Underscore is good code practice for private variables that are used for get and set.
         private Rectangle _spriteRectangle; 
         private bool _isSolid;
         private int _objectID;
-        
-       
-        public float speedX; //Horizontal movement speed of the spider.
-        public float speedY; //Vertical speed of spider.
-        public float Velocity;
-
+        private string side;
         #endregion DataMembers
 
         #region Properties
@@ -58,17 +52,38 @@ namespace Lemmings.Objects
 
         #region Constructor
 
-        public SpiderEnemy(int ID)
+        public Edge(string edgeSide, int ID)
         {
-            _position = new Vector2(400, 320);
-            _spriteRectangle = new Rectangle(0, 1, 33, 32);
-            _isSolid = false;
-            _objectID = ID;
-            speedX = 1f;
-            speedY = 0.5f;
-            Velocity = 0;
+            switch (edgeSide)
+            {
+                case "Top":
+                _position = new Vector2(0, 0);
+                _spriteRectangle = new Rectangle(0, 0, 800, 49);
+                break;
+
+                case "Left":
+                _position = new Vector2(0, 0);
+                _spriteRectangle = new Rectangle(0, 0, 49, 600);
+                break;
+
+                case "Right":
+                _position = new Vector2(751, 0);
+                _spriteRectangle = new Rectangle(0, 0, 49, 600);
+                break;
+
+                case "Bottom":
+                _position = new Vector2(0, 551);
+                _spriteRectangle = new Rectangle(0, 0, 800, 49);
+                break;
+            }
             
+
+
+            _isSolid = true;
+            _objectID = ID;
         }
+
+        
         #endregion Constructor
 
         #region Methods
@@ -82,20 +97,18 @@ namespace Lemmings.Objects
             return base.ReturnObjectID();
         }
 
-        public void Terminate(int SpiderEnemyID)
+        public void Terminate(int EdgeID)
         {
-            //Code to terminate the current spider based off its ID
+            //Code to terminate the current edge based off its ID
+        }
+        public void Flip()
+        {
+            
         }
 
         
        
         
         #endregion Methods
-        
-
-
-
-
-
     }
 }

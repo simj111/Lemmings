@@ -17,10 +17,6 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         
-        //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
-        public float speedX; //Horizontal movement speed of the lemming.
-        public float speedY; //How fast the lemming falls.
-        public float Velocity;
 
         #endregion DataMembers
 
@@ -59,13 +55,10 @@ namespace Lemmings.Objects
 
         public Floor(int ID)
         {
-            _position = new Vector2(200, 100);
-            _spriteRectangle = new Rectangle(0, 0, 133, 14);
+            _position = new Vector2(268, 168);
+            _spriteRectangle = new Rectangle(0, 0, 268, 16);
             _isSolid = true;
             _objectID = ID;
-            speedX = 1f;
-            speedY = 0.5f;
-            Velocity = 0;
             
         }
         #endregion Constructor
@@ -83,7 +76,7 @@ namespace Lemmings.Objects
 
         public void Terminate(int FloorID)
         {
-            //Code to terminate the current spider based off its ID
+            //Code to terminate the current floor based off its ID
         }
 
         

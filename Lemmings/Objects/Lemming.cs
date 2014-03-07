@@ -64,7 +64,7 @@ namespace Lemmings.Objects
         #region Constructor
         public Lemming(int ID)
         {
-            _position = new Vector2(400, 40);
+            _position = new Vector2(400, 50);
             _spriteRectangle = new Rectangle(22, 0, 5, 10);
             _isSolid = false;
             _objectID = ID;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Lemmings.Objects;
+using Microsoft.Xna.Framework;
 
 namespace Lemmings.Managers
 {
@@ -41,15 +42,24 @@ namespace Lemmings.Managers
         {
             //add the default objects that need to be created to the list "objectsToCreate".
             
-            //Testing lemming creation
-            objectsToCreate.Add("Lemming");
-            objectsToCreate.Add("Lemming");
-
-            objectsToCreate.Add("Spider");
-            objectsToCreate.Add("Spider");
-
+            //Testing creation
             objectsToCreate.Add("Floor");
-          
+            objectsToCreate.Add("Floor");
+            objectsToCreate.Add("Floor");
+            objectsToCreate.Add("Floor");
+            objectsToCreate.Add("Floor");
+            objectsToCreate.Add("Floor");
+
+            objectsToCreate.Add("Spider");
+            objectsToCreate.Add("Spider");
+
+            objectsToCreate.Add("Edge_Top");
+            objectsToCreate.Add("Edge_Bottom");
+            objectsToCreate.Add("Edge_Left");
+            objectsToCreate.Add("Edge_Right");
+
+            objectsToCreate.Add("Lemming");
+            objectsToCreate.Add("Lemming");
         }
 
         //This method calls the factory object to create all objects in the "objectsToCreate" list based off the string within them
@@ -66,20 +76,51 @@ namespace Lemmings.Managers
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
                     }
-                    if (obj.Contains("Spider"))
+
+                   else if (obj.Contains("Spider"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
                     }
-                    if (obj.Contains("Floor"))
+
+                    else if (obj.Contains("Floor"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Floor));
+                    }
+
+                    else if (obj.Contains("Edge_Top"))
+                    {
+                        factory.GetEdgeType("Top");
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                    }
+
+                    else if (obj.Contains("Edge_Bottom"))
+                    {
+                        factory.GetEdgeType("Bottom");
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                    }
+
+                    else if (obj.Contains("Edge_Left"))
+                    {
+                        factory.GetEdgeType("Left");
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        
+                    }
+
+                    else if (obj.Contains("Edge_Right"))
+                    {
+                        factory.GetEdgeType("Right");
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
                     }
                     
                 }
                 objectsToCreate.Clear();
                 //This code is just to force one of the lemmings and spiders to appear in a different place
-                objectsToDraw[1].position = new Microsoft.Xna.Framework.Vector2(100, 150);
-                objectsToDraw[3].position = new Microsoft.Xna.Framework.Vector2(200, 300);
+                objectsToDraw[1].position = new Vector2(105, 233);
+                objectsToDraw[2].position = new Vector2(430, 233);
+                objectsToDraw[3].position = new Vector2(266, 300);
+                objectsToDraw[4].position = new Vector2(134, 374);
+                objectsToDraw[5].position = new Vector2(405, 374);
+                
             
             
         }
