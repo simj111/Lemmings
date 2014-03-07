@@ -47,6 +47,8 @@ namespace Lemmings.Managers
 
             objectsToCreate.Add("Spider");
             objectsToCreate.Add("Spider");
+
+            objectsToCreate.Add("Floor");
           
         }
 
@@ -68,6 +70,10 @@ namespace Lemmings.Managers
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
                     }
+                    if (obj.Contains("Floor"))
+                    {
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Floor));
+                    }
                     
                 }
                 objectsToCreate.Clear();
@@ -88,6 +94,7 @@ namespace Lemmings.Managers
 
         public void UpdateEntities()
         {
+            
             foreach (Lemming lem in objectsToDraw)
             {
                 lem.currentRole.UpdateLemming();

@@ -33,6 +33,8 @@ namespace Lemmings
         Texture2D background;
         Texture2D defaultLemmingSheet;
         Texture2D spiderEnemySheet;
+        Texture2D floorSheet;
+
        List<Tuple<Texture2D,string>> allSheets = null;
         Rectangle mainFrame;
         #endregion DataMembers
@@ -81,6 +83,10 @@ namespace Lemmings
 
             spiderEnemySheet = Content.Load<Texture2D>("spider");
             allSheets.Add(Tuple.Create(spiderEnemySheet, "SpiderSheet"));
+
+            floorSheet = Content.Load<Texture2D>("platform");
+            allSheets.Add(Tuple.Create(floorSheet, "FloorSheet"));
+
             //particles stuff which needs to be moved, partial tutorial done.
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             List<Texture2D> textures = new List<Texture2D>();

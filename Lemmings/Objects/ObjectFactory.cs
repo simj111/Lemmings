@@ -59,7 +59,7 @@ namespace Lemmings.Objects
                         break;
 
                     case ObjectType.Floor:
-                        //newObject = new Floor();
+                        newObject = new Floor(increaseObjectID);
                         break;
 
                     case ObjectType.Spider:

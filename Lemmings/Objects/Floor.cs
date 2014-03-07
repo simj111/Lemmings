@@ -6,12 +6,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-
 namespace Lemmings.Objects
 {
-    class SpiderEnemy : ParentObject
+    class Floor: ParentObject
     {
-         #region DataMembers
+        #region DataMembers
 
         private Vector2 _position; //Needed for the set in position override. Underscore is good code practice for private variables that are used for get and set.
         private Rectangle _spriteRectangle; 
@@ -58,11 +57,11 @@ namespace Lemmings.Objects
 
         #region Constructor
 
-        public SpiderEnemy(int ID)
+        public Floor(int ID)
         {
-            _position = new Vector2(400, 300);
-            _spriteRectangle = new Rectangle(0, 1, 33, 32);
-            _isSolid = false;
+            _position = new Vector2(200, 100);
+            _spriteRectangle = new Rectangle(0, 0, 133, 14);
+            _isSolid = true;
             _objectID = ID;
             speedX = 1f;
             speedY = 0.5f;
@@ -82,7 +81,7 @@ namespace Lemmings.Objects
             return base.ReturnObjectID();
         }
 
-        public void Terminate(int SpiderEnemyID)
+        public void Terminate(int FloorID)
         {
             //Code to terminate the current spider based off its ID
         }
@@ -91,11 +90,5 @@ namespace Lemmings.Objects
        
         
         #endregion Methods
-        
-
-
-
-
-
     }
 }
