@@ -22,6 +22,21 @@ namespace Lemmings.Objects
         //Needed in the draw method.
         public abstract Color colour { get; }
 
+        //Used to rotate object based on it's rotation. Also used in the draw method.
+        public abstract float rotation { get; set; }
+
+        //Used as an origin point for rotation to happen, used within the draw method.
+        public abstract Vector2 origin {get;}
+
+        //Used to set the scale of an object in the draw method.
+        public abstract float scale{get;}
+
+        //Used to add an effect to the sprite e.g. flip horizontaly, within the draw method.
+        public abstract SpriteEffects spriteEffect { get; set; }
+
+        //Shows the depth of the object in the draw method.
+        public abstract float depth{get;}
+
         //Defines whether an object is solid or not.
         public abstract bool isSolid { get; set; }
 
@@ -34,7 +49,7 @@ namespace Lemmings.Objects
         //This will be called by the Renderer.
         public virtual void DrawSelf(SpriteBatch sBatch, Texture2D texture)
         {
-            sBatch.Draw(texture, position,spriteRectangle, colour);
+            sBatch.Draw(texture, position,spriteRectangle, colour, rotation, origin, scale, spriteEffect, depth);
         }
 
         //This could be used by anything that may need to know the objects ID e.g. within the inputmanager. Better to ask the object to retrieve it's own ID via method

@@ -51,7 +51,6 @@ namespace Lemmings.Managers
             objectsToCreate.Add("Floor");
 
             objectsToCreate.Add("Spider");
-            objectsToCreate.Add("Spider");
 
             objectsToCreate.Add("Edge_Top");
             objectsToCreate.Add("Edge_Bottom");
@@ -59,7 +58,7 @@ namespace Lemmings.Managers
             objectsToCreate.Add("Edge_Right");
 
             objectsToCreate.Add("Lemming");
-            objectsToCreate.Add("Lemming");
+            
         }
 
         //This method calls the factory object to create all objects in the "objectsToCreate" list based off the string within them

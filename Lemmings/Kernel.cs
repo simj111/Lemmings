@@ -46,7 +46,7 @@ namespace Lemmings
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
-
+           
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
