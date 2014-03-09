@@ -15,6 +15,7 @@ namespace Lemmings.Objects
             Floor,
             Spider,
             Edge,
+            Gate,
         }
     class ObjectFactory
     //Used to actually create entities and assign default properties(spritebatch, position? etc.)
@@ -69,6 +70,9 @@ namespace Lemmings.Objects
                       
                     case ObjectType.Edge:
                         newObject = new Edge(edgeType, increaseObjectID);
+                        break;
+                    case ObjectType.Gate:
+                        newObject = new Gate(increaseObjectID);
                         break;
                 }
                 

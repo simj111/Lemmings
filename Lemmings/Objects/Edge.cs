@@ -106,7 +106,7 @@ namespace Lemmings.Objects
                 case "Bottom":
                 _position = new Vector2(0, 551);
                 _spriteRectangle = new Rectangle(0, 0, 800, 49);
-                _spriteEffect = SpriteEffects.FlipVertically;
+                _spriteEffect = SpriteEffects.None;
                 break;
             }
             _rotation = 0;

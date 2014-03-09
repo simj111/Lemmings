@@ -76,6 +76,16 @@ namespace Lemmings
                         }
                     }
                 }
+                else if (objectName.Contains("Gate"))
+                {
+                    foreach (Tuple<Texture2D, string> sheets in currentSpriteSheets)
+                    {
+                        if (sheets.Item2.Contains("Gate"))
+                        {
+                            drawableObject.DrawSelf(mySpriteBatch, sheets.Item1);
+                        }
+                    }
+                }
 
                 else if (objectName.Contains("Lemming"))
                 {

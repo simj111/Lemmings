@@ -48,7 +48,7 @@ namespace Lemmings.Managers
             objectsToCreate.Add("Floor");
             objectsToCreate.Add("Floor");
             objectsToCreate.Add("Floor");
-            objectsToCreate.Add("Floor");
+            
 
             objectsToCreate.Add("Spider");
 
@@ -56,6 +56,8 @@ namespace Lemmings.Managers
             objectsToCreate.Add("Edge_Bottom");
             objectsToCreate.Add("Edge_Left");
             objectsToCreate.Add("Edge_Right");
+
+            objectsToCreate.Add("Gate");
 
             objectsToCreate.Add("Lemming");
             
@@ -110,16 +112,23 @@ namespace Lemmings.Managers
                         factory.GetEdgeType("Right");
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
                     }
+
+                    else if (obj.Contains("Gate"))
+                    {
+                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Gate));
+                    }
                     
                 }
                 objectsToCreate.Clear();
-                //This code is just to force one of the lemmings and spiders to appear in a different place
-                objectsToDraw[1].position = new Vector2(105, 233);
-                objectsToDraw[2].position = new Vector2(430, 233);
-                objectsToDraw[3].position = new Vector2(266, 300);
-                objectsToDraw[4].position = new Vector2(134, 374);
-                objectsToDraw[5].position = new Vector2(405, 374);
-                
+
+                //This code is just to force the floors to appear in a different place cus josh smells
+                objectsToDraw[0].position = new Vector2(85, 550);
+                objectsToDraw[1].position = new Vector2(85, 300);
+                objectsToDraw[2].position = new Vector2(460, 300);
+                objectsToDraw[3].position = new Vector2(266, 450);
+                objectsToDraw[4].position = new Vector2(430, 550);
+
+                objectsToDraw[11].position = new Vector2(115, 130);
             
             
         }

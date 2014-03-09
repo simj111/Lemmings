@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Lemmings.Objects;
 using Lemmings.Interfaces;
 using Lemmings.Managers;
+using Lemmings.Astar;
 #endregion
 
 namespace Lemmings
@@ -29,6 +30,15 @@ namespace Lemmings
         ObjectFactory kObjectFactory;
         Renderer kRenderer;
 
+        Node[] nodeArray;
+        const int GRID_SIZE = 16;
+        int element;
+        private int xVar;
+        private int yVar;
+        Node start;
+        Node goal;
+        Node blocked;
+
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
         Texture2D defaultLemmingSheet;
@@ -36,6 +46,7 @@ namespace Lemmings
         Texture2D floorSheet;
         Texture2D edgeTopBottom;
         Texture2D edgeLeftRight;
+        Texture2D gate;
 
        List<Tuple<Texture2D,string>> allSheets = null;
         Rectangle mainFrame;
@@ -48,6 +59,7 @@ namespace Lemmings
             graphics = new GraphicsDeviceManager(this);
            
             Content.RootDirectory = "Content";
+            
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
         }
@@ -66,7 +78,19 @@ namespace Lemmings
             inputManager = new InputManager();
             allSheets = new List<Tuple<Texture2D, string>>();
             kObjectFactory = new ObjectFactory();
-            
+            start = new Node();
+            goal = new Node();
+            blocked = new Node();
+
+            nodeArray = new Node[256];
+
+            for (int i = 0; i < 256; i++)
+            {
+                nodeArray[i] = new Node();
+                nodeArray[i].element = i;
+                
+            }
+
             base.Initialize();
             this.IsMouseVisible = true;
         }
@@ -77,6 +101,31 @@ namespace Lemmings
         /// </summary>
         protected override void LoadContent()
         {
+            
+            for (int i = 0; i < GRID_SIZE; i++)
+            {
+                for (int j = 0; j < GRID_SIZE; j++)
+                {
+                   nodeArray[i *(GRID_SIZE) + j].position = new Vector2(xVar, yVar);
+                   nodeArray[i * (GRID_SIZE) + j].texture = Content.Load<Texture2D>("griddefault");
+                   xVar += nodeArray[i * (GRID_SIZE) + j].texture.Width;
+                }
+                xVar = 0;
+                yVar += 50;
+            }
+            start = nodeArray[124];
+            start.texture = Content.Load<Texture2D>("gridgreen");
+
+            goal = nodeArray[34];
+            goal.texture = Content.Load<Texture2D>("gridred");
+
+            for (int num = 49; num < 55; num++)
+            {
+                blocked = nodeArray[num];
+                blocked.texture = Content.Load<Texture2D>("gridblue");
+                blocked.blocked = true;
+            }
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             background = Content.Load<Texture2D>("ourlevel");
@@ -96,6 +145,9 @@ namespace Lemmings
 
             edgeLeftRight = Content.Load<Texture2D>("leftright");
             allSheets.Add(Tuple.Create(edgeLeftRight, "EdgeLeftRight"));
+
+            gate = Content.Load<Texture2D>("gate");
+            allSheets.Add(Tuple.Create(gate, "Gate"));
 
             //particles stuff which needs to be moved, partial tutorial done.
             mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
@@ -151,9 +203,14 @@ namespace Lemmings
 
             spriteBatch.Draw(background, mainFrame, Color.White);
             particleEngine.Draw(spriteBatch);
-            
+            for (int i = 0; i < 256; i++)
+            {
+                nodeArray[i].Draw(spriteBatch);
+            }
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
             kObjectManager.CallRendererToDraw();
+            
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }

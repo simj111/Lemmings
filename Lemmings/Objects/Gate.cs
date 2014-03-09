@@ -6,12 +6,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-
 namespace Lemmings.Objects
 {
-    class SpiderEnemy : ParentObject
+    class Gate : ParentObject
     {
-         #region DataMembers
+        #region DataMembers
 
         private Vector2 _position; //Needed for the set in position override. Underscore is good code practice for private variables that are used for get and set.
         private Rectangle _spriteRectangle;
@@ -19,10 +18,7 @@ namespace Lemmings.Objects
         private SpriteEffects _spriteEffect;
         private bool _isSolid;
         private int _objectID;
-
-        public float speedX; //Horizontal movement speed of the spider.
-        public float speedY; //Vertical speed of spider.
-        public float Velocity;
+        
 
         #endregion DataMembers
 
@@ -86,17 +82,14 @@ namespace Lemmings.Objects
 
         #region Constructor
 
-        public SpiderEnemy(int ID)
+        public Gate(int ID)
         {
-            _position = new Vector2(625, 375);
-            _spriteRectangle = new Rectangle(0, 1, 33, 32);
+            _position = new Vector2(630, 551);
+            _spriteRectangle = new Rectangle(0, 0, 102, 51);
             _rotation = 0;
             _spriteEffect = SpriteEffects.None;
-            _isSolid = false;
+            _isSolid = true;
             _objectID = ID;
-            speedX = 1f;
-            speedY = 0.5f;
-            Velocity = 0;
             
         }
         #endregion Constructor
@@ -112,20 +105,14 @@ namespace Lemmings.Objects
             return base.ReturnObjectID();
         }
 
-        public void Terminate(int SpiderEnemyID)
+        public void Terminate(int GateID)
         {
-            //Code to terminate the current spider based off its ID
+            //Code to terminate the current gate object based off its ID
         }
 
         
        
         
         #endregion Methods
-        
-
-
-
-
-
     }
 }
