@@ -37,13 +37,13 @@ namespace Lemmings
             Vector2 position = EmitterLocation;
             Vector2 velocity = new Vector2(
                    1f * (float)(random.NextDouble() * 2 - 1),
-                   1f * (float)(random.NextDouble() * 2 - 1));
+                   1f * (float)(random.NextDouble() / 2 - 1));
             float angle = 0;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
             Color color = Color.White;
-                    
+
             float size = (float)random.NextDouble();
-            int ttl = 20 + random.Next(40);
+            int ttl = 10 + random.Next(30);
 
             return new ParticleSystem(texture, position, velocity, angle, angularVelocity, color, size, ttl);
 
@@ -71,12 +71,12 @@ namespace Lemmings
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+
             for (int index = 0; index < particles.Count; index++)
             {
                 particles[index].Draw(spriteBatch);
             }
-          
+
         }
         #endregion Methods
     }

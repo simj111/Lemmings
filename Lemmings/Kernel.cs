@@ -31,7 +31,7 @@ namespace Lemmings
         Renderer kRenderer;
 
         Node[] nodeArray;
-        public const int GRID_SIZE = 16;
+        const int GRID_SIZE = 16;
         int element;
         private int xVar;
         private int yVar;
@@ -48,7 +48,7 @@ namespace Lemmings
         Texture2D edgeLeftRight;
         Texture2D gate;
 
-       List<Tuple<Texture2D,string>> allSheets = null;
+        List<Tuple<Texture2D, string>> allSheets = null;
         Rectangle mainFrame;
         #endregion DataMembers
 
@@ -57,9 +57,9 @@ namespace Lemmings
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
-           
+
             Content.RootDirectory = "Content";
-            
+
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
         }
@@ -88,9 +88,8 @@ namespace Lemmings
             {
                 nodeArray[i] = new Node();
                 nodeArray[i].element = i;
-                
-            }
 
+            }
             base.Initialize();
             this.IsMouseVisible = true;
         }
@@ -101,14 +100,14 @@ namespace Lemmings
         /// </summary>
         protected override void LoadContent()
         {
-            
+
             for (int i = 0; i < GRID_SIZE; i++)
             {
                 for (int j = 0; j < GRID_SIZE; j++)
                 {
-                   nodeArray[i *(GRID_SIZE) + j].position = new Vector2(xVar, yVar);
-                   nodeArray[i * (GRID_SIZE) + j].texture = Content.Load<Texture2D>("griddefault");
-                   xVar += nodeArray[i * (GRID_SIZE) + j].texture.Width;
+                    nodeArray[i * (GRID_SIZE) + j].position = new Vector2(xVar, yVar);
+                    nodeArray[i * (GRID_SIZE) + j].texture = Content.Load<Texture2D>("griddefault");
+                    xVar += nodeArray[i * (GRID_SIZE) + j].texture.Width;
                 }
                 xVar = 0;
                 yVar += 50;
@@ -125,6 +124,7 @@ namespace Lemmings
                 blocked.texture = Content.Load<Texture2D>("gridblue");
                 blocked.blocked = true;
             }
+
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -157,7 +157,7 @@ namespace Lemmings
             textures.Add(Content.Load<Texture2D>("orange"));
             particleEngine = new ParticleEngine(textures, new Vector2(400, 240));
 
-            
+
             kRenderer = new Renderer(spriteBatch, allSheets); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
             kObjectManager = new ObjectManager(kObjectFactory, kRenderer);
         }
@@ -181,14 +181,15 @@ namespace Lemmings
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputManager.update();
-            
+
             // TODO: Add your update logic here
+
             base.Update(gameTime);
-           
-            //Particle engine initialisation
-            //particleEngine.EmitterLocation = new Vector2(300,300);
-           // particleEngine.Update();
-           kObjectManager.UpdateEntities();
+
+
+            particleEngine.EmitterLocation = new Vector2(655, 526);
+            particleEngine.Update();
+            // kObjectManager.UpdateEntities();
         }
 
         /// <summary>
@@ -202,23 +203,25 @@ namespace Lemmings
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, mainFrame, Color.White);
-            particleEngine.Draw(spriteBatch);
+
+
+
             for (int i = 0; i < 256; i++)
             {
                 nodeArray[i].Draw(spriteBatch);
             }
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
             kObjectManager.CallRendererToDraw();
-            
-            
+            particleEngine.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
         #endregion Methods
-        
-        
-        
 
-       
+
+
+
+
     }
 }

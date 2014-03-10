@@ -18,6 +18,7 @@ namespace Lemmings.Objects
         private SpriteEffects _spriteEffect;
         private bool _isSolid;
         private int _objectID;
+        private bool _isUpdatable;
         
 
         #endregion DataMembers
@@ -78,6 +79,12 @@ namespace Lemmings.Objects
             get { return _objectID; }
             set { _objectID = value; }
         }
+
+        public override bool isUpdatable
+        {
+            get { return _isUpdatable; }
+            set { _isUpdatable = value; }
+        }
         #endregion Properties
 
         #region Constructor
@@ -90,6 +97,7 @@ namespace Lemmings.Objects
             _spriteEffect = SpriteEffects.None;
             _isSolid = true;
             _objectID = ID;
+            _isUpdatable;
             
         }
         #endregion Constructor

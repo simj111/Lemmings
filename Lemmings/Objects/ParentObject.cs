@@ -45,6 +45,7 @@ namespace Lemmings.Objects
 
         //if an object is updatable
         public abstract bool isUpdatable { get; set; }
+
         #endregion Properties
 
         #region Methods

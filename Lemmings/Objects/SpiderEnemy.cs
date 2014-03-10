@@ -19,10 +19,19 @@ namespace Lemmings.Objects
         private SpriteEffects _spriteEffect;
         private bool _isSolid;
         private int _objectID;
+        private bool _isUpdatable;
 
+        private Vector2 direction;
+        private Vector2 velocity;
+        private Vector2 desiredVelocity;
+        private Vector2 steeringForce;
+        private float mass = 50f;
+        private float maxForce = 0.3f;
         public float speedX; //Horizontal movement speed of the spider.
         public float speedY; //Vertical speed of spider.
         public float Velocity;
+        private float maxVelocity = 2f;
+        private Vector2 lemmingposition;
 
         #endregion DataMembers
 
@@ -82,6 +91,12 @@ namespace Lemmings.Objects
             get { return _objectID; }
             set { _objectID = value; }
         }
+
+        public override bool isUpdatable
+        {
+            get { return _isUpdatable; }
+            set { _isUpdatable = value; }
+        }
         #endregion Properties
 
         #region Constructor
@@ -94,6 +109,8 @@ namespace Lemmings.Objects
             _spriteEffect = SpriteEffects.None;
             _isSolid = false;
             _objectID = ID;
+            _isUpdatable = true;
+
             speedX = 1f;
             speedY = 0.5f;
             Velocity = 0;
@@ -117,6 +134,43 @@ namespace Lemmings.Objects
             //Code to terminate the current spider based off its ID
         }
 
+        public void move()
+        {
+            lemmingposition = new Vector2(115, 130);
+            direction = lemmingposition - _position;
+            direction.Normalize();
+
+            Seek(position);
+            _position += velocity;
+
+            _rotation = (float)Math.Atan2(velocity.Y, velocity.X);
+
+        }
+
+        public void Seek(Vector2 myPos)
+        {
+            velocity = direction * maxVelocity;
+            desiredVelocity = velocity;
+            steeringForce = desiredVelocity - velocity;
+
+            steeringForce = CheckMax(steeringForce, maxForce);
+            steeringForce /= mass;
+
+            velocity += steeringForce;
+            velocity = CheckMax(velocity, maxVelocity);
+        }
+
+        public Vector2 CheckMax(Vector2 vector, float cap)
+        {
+            float x = cap - vector.Length();
+            if (x < 1.0)
+            {
+                x = 1.0f;
+            }
+            vector.X += x;
+            vector.Y += x;
+            return vector;
+        }
         
        
         
