@@ -25,10 +25,12 @@ namespace Lemmings
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         ParticleEngine particleEngine;
+        ParticleEngine particleEngine2;
         InputManager inputManager;
         ObjectManager kObjectManager;
         ObjectFactory kObjectFactory;
         Renderer kRenderer;
+        AStarSearch search;
 
         Node[] nodeArray;
         const int GRID_SIZE = 16;
@@ -38,6 +40,7 @@ namespace Lemmings
         Node start;
         Node goal;
         Node blocked;
+        Texture2D nodePath;
 
         // Create an instance of Texture2D that will contain the background texture.
         Texture2D background;
@@ -82,6 +85,9 @@ namespace Lemmings
             goal = new Node();
             blocked = new Node();
 
+
+            search = new AStarSearch();
+
             nodeArray = new Node[256];
 
             for (int i = 0; i < 256; i++)
@@ -118,12 +124,14 @@ namespace Lemmings
             goal = nodeArray[34];
             goal.texture = Content.Load<Texture2D>("gridred");
 
+            nodePath = Content.Load<Texture2D>("gridwhite");
             for (int num = 49; num < 55; num++)
             {
                 blocked = nodeArray[num];
                 blocked.texture = Content.Load<Texture2D>("gridblue");
                 blocked.blocked = true;
             }
+            search.Search(nodeArray, start, goal, goal.texture, nodePath);
 
 
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -156,7 +164,7 @@ namespace Lemmings
             textures.Add(Content.Load<Texture2D>("yellow"));
             textures.Add(Content.Load<Texture2D>("orange"));
             particleEngine = new ParticleEngine(textures, new Vector2(400, 240));
-
+            particleEngine2 = new ParticleEngine(textures, new Vector2(400, 240));
 
             kRenderer = new Renderer(spriteBatch, allSheets); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
             kObjectManager = new ObjectManager(kObjectFactory, kRenderer);
@@ -187,9 +195,11 @@ namespace Lemmings
             base.Update(gameTime);
 
 
-            particleEngine.EmitterLocation = new Vector2(655, 526);
+            particleEngine.EmitterLocation = new Vector2(675 ,516);
+            particleEngine2.EmitterLocation = new Vector2(630, 516);
             particleEngine.Update();
-            // kObjectManager.UpdateEntities();
+            particleEngine2.Update();
+            kObjectManager.UpdateEntities();
         }
 
         /// <summary>
@@ -213,7 +223,7 @@ namespace Lemmings
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
             kObjectManager.CallRendererToDraw();
             particleEngine.Draw(spriteBatch);
-
+            particleEngine2.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

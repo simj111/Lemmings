@@ -39,11 +39,11 @@ namespace Lemmings
                    1f * (float)(random.NextDouble() * 2 - 1),
                    1f * (float)(random.NextDouble() / 2 - 1));
             float angle = 0;
-            float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+            float angularVelocity = 0.1f * (float)(random.NextDouble() *2 - 1);
             Color color = Color.White;
 
             float size = (float)random.NextDouble();
-            int ttl = 10 + random.Next(30);
+            int ttl = 5 + random.Next(30);
 
             return new ParticleSystem(texture, position, velocity, angle, angularVelocity, color, size, ttl);
 
@@ -52,7 +52,7 @@ namespace Lemmings
 
         public void Update()
         {
-            int total = 10;
+            int total = 5;
 
             for (int i = 0; i < total; i++)
             {

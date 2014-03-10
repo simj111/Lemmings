@@ -140,6 +140,10 @@ namespace Lemmings.Objects
         {
             //Code to terminate the current edge based off its ID
         }
+
+        public override void Move()
+        {
+        }
         #endregion Methods
     }
 }

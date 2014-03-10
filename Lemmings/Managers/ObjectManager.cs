@@ -146,9 +146,9 @@ namespace Lemmings.Managers
         {
             for (int i = 0; i<objectsToDraw.Count(); i++)
             {
-                if
+                if (objectsToDraw[i].isUpdatable == true)
                 {
-
+                    objectsToDraw[i].Move();
                 }
             }
         

@@ -61,6 +61,12 @@ namespace Lemmings.Objects
         {
             return objectID;
         }
+
+        //This method moves the object that can move
+        public virtual void Move()
+        {
+            
+        }
         #endregion Methods
     }
 }

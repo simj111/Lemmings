@@ -134,7 +134,7 @@ namespace Lemmings.Objects
             //Code to terminate the current spider based off its ID
         }
 
-        public void move()
+        public override void Move()
         {
             lemmingposition = new Vector2(115, 130);
             direction = lemmingposition - _position;
@@ -143,7 +143,7 @@ namespace Lemmings.Objects
             Seek(position);
             _position += velocity;
 
-            _rotation = (float)Math.Atan2(velocity.Y, velocity.X);
+            _rotation = (float)Math.Atan2(velocity.X, velocity.Y);
 
         }
 

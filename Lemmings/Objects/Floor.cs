@@ -97,7 +97,7 @@ namespace Lemmings.Objects
             _spriteEffect = SpriteEffects.None;
             _isSolid = true;
             _objectID = ID;
-            _isUpdatable;
+           // _isUpdatable;
             
         }
         #endregion Constructor
@@ -118,7 +118,9 @@ namespace Lemmings.Objects
             //Code to terminate the current floor based off its ID
         }
 
-        
+        public override void Move()
+        {
+        }
        
         
         #endregion Methods

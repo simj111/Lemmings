@@ -118,6 +118,10 @@ namespace Lemmings.Objects
             //Code to terminate the current gate object based off its ID
         }
 
+        public override void Move()
+        {
+        }
+
         
        
         

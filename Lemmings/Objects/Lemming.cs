@@ -145,6 +145,10 @@ namespace Lemmings.Objects
             }
 
         }
+
+        public override void Move()
+        {
+        }
         //Potentially something for collision and animation needs to be added into the properties and method sections.
         #endregion Methods
         

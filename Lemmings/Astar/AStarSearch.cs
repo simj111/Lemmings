@@ -14,7 +14,7 @@ namespace Lemmings.Astar
         Node start = null;
         Node goal = null;
         Node currentNode;
-        Node[] searchSpace;
+        Node[] searchSpace = new Node[256];
         List<Node> OpenList = new List<Node>();
         List<Node> ClosedList = new List<Node>();
         List<Node> nodePath = new List<Node>();
@@ -62,23 +62,50 @@ namespace Lemmings.Astar
 
         public Node FindFittest()
         {
-            //assign lowest f to current
+            int lowest = 100;
+            foreach (Node nodes in OpenList)
+            {
+                if(lowest > nodes.F)
+                {
+                    lowest = nodes.F;
+                    currentNode = nodes;
+                }
+            }
             return currentNode;
         }
 
         public bool Closed(Node cNode)
         {
-            return true;
+            if (ClosedList.Contains(cNode))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         public bool Opened(Node oNode)
         {
-            return true;
+            if (OpenList.Contains(oNode))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<Node>ShowPath(Node goalNode)
         {
-
+            while (currentNode != start)
+            {
+                 currentNode = currentNode.parent;
+                nodePath.Add(currentNode);
+            }
             return nodePath;
             
         }
@@ -104,15 +131,28 @@ namespace Lemmings.Astar
                          {
                              G = cost + 50;
                          }
-                    if (Opened(current) == false)
-                     {
-                         OpenList.Add(current);
-                         current.parent = currentNode;
-                         current.G = G;
-                        // current.H = goalNode.position - currentNode.position;
-                     }
+                         if (Opened(current) == false)
+                         {
+                             OpenList.Add(current);
+                             current.parent = currentNode;
+                             current.G = G;
+                             current.H = Convert.ToInt32(Math.Abs(current.position.X - goalNode.position.X) + Math.Abs(current.position.Y - goalNode.position.Y));
+                             current.F = current.G + current.H;
+                         }
+
+                         else
+                         {
+                             if (G < current.G)
+                             {
+                                 current.parent = currentNode;
+                                 current.G = G;
+                                 current.H = Convert.ToInt32(Math.Abs(current.position.X - goalNode.position.X) + Math.Abs(current.position.Y - goalNode.position.Y));
+                                 current.F = current.G + current.H;
+                             }
+                         }
                      }
                  }
+                 gridRow = gridRow + 16;
              }
         }
 
