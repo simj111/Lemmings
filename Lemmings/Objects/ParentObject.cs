@@ -42,6 +42,9 @@ namespace Lemmings.Objects
 
         //ID so that it is possible to interact with a certain object.
         public abstract int objectID { get; set; }
+
+        //if an object is updatable
+        public abstract bool isUpdatable { get; set; }
         #endregion Properties
 
         #region Methods

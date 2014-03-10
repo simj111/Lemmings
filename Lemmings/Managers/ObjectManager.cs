@@ -15,6 +15,7 @@ namespace Lemmings.Managers
         Renderer renderer;
         private IList<string> objectsToCreate = null; 
         private IList<ParentObject> objectsToDraw = null;
+        private IList<SpiderEnemy>spiderlist;
         #endregion DataMembers
 
         #region Properties
@@ -143,11 +144,14 @@ namespace Lemmings.Managers
 
         public void UpdateEntities()
         {
-            
-            foreach (Lemming lem in objectsToDraw)
+            for (int i = 0; i<objectsToDraw.Count(); i++)
             {
-                lem.currentRole.UpdateLemming();
+                if
+                {
+
+                }
             }
+        
         }
 
 

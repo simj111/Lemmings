@@ -46,6 +46,7 @@
     <Compile Include="Astar\BinaryTree.cs" />
     <Compile Include="Astar\BinaryTreeNode.cs" />
     <Compile Include="Astar\Node.cs" />
+    <Compile Include="Interfaces\IMoveableEntity.cs" />
     <Compile Include="Interfaces\IRole.cs" />
     <Compile Include="Objects\Edge.cs" />
     <Compile Include="Objects\Floor.cs" />

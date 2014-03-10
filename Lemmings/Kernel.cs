@@ -31,7 +31,7 @@ namespace Lemmings
         Renderer kRenderer;
 
         Node[] nodeArray;
-        const int GRID_SIZE = 16;
+        public const int GRID_SIZE = 16;
         int element;
         private int xVar;
         private int yVar;
@@ -188,7 +188,7 @@ namespace Lemmings
             //Particle engine initialisation
             //particleEngine.EmitterLocation = new Vector2(300,300);
            // particleEngine.Update();
-           // kObjectManager.UpdateEntities();
+           kObjectManager.UpdateEntities();
         }
 
         /// <summary>

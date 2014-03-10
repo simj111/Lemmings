@@ -24,6 +24,7 @@ namespace Lemmings.Objects
         private SpriteEffects _spriteEffect;
         private bool _isSolid;
         private int _objectID;
+        private bool _isUpdatable;
         public string roleName;
         private string changeJob;
         //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
@@ -88,6 +89,12 @@ namespace Lemmings.Objects
             get { return _objectID; }
             set { _objectID = value; }
         }
+
+        public override bool isUpdatable
+        {
+            get { return _isUpdatable; }
+            set { _isUpdatable = value; }
+        }
         #endregion Properties
 
         #region Constructor
@@ -99,6 +106,7 @@ namespace Lemmings.Objects
             _spriteEffect = SpriteEffects.None;
             _isSolid = false;
             _objectID = ID;
+            _isUpdatable = true;
             speedX = 1f;
             speedY = 0.5f;
 
