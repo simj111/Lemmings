@@ -14,13 +14,14 @@ namespace Lemmings.Astar
         Node start = null;
         Node goal = null;
         Node currentNode;
+        Node child;
         Node[] searchSpace = new Node[256];
         List<Node> OpenList = new List<Node>();
         List<Node> ClosedList = new List<Node>();
         List<Node> nodePath = new List<Node>();
         Texture2D check;
         Texture2D path;
-        private int gridRow;
+        
         #endregion DataMembers
 
         #region Properties
@@ -45,12 +46,12 @@ namespace Lemmings.Astar
 
             OpenList.Add(start);
             currentNode = start;
-            while (found != true || OpenList.Count == 0)
+            while (found != true || OpenList.Count != 0)
             {
                 OpenList.Remove(currentNode);
                 ClosedList.Add(currentNode);
                 CheckChildren(currentNode, goal);
-                FindFittest();
+               currentNode = FindFittest();
                 if (currentNode == goal)
                 {
                     found = true;
@@ -101,7 +102,7 @@ namespace Lemmings.Astar
 
         public List<Node>ShowPath(Node goalNode)
         {
-            while (currentNode != start)
+            while (currentNode != goalNode)
             {
                  currentNode = currentNode.parent;
                 nodePath.Add(currentNode);
@@ -112,18 +113,18 @@ namespace Lemmings.Astar
 
         public void CheckChildren(Node current, Node goalNode)
         {
-              gridRow = 16 - 1;
+              int gridRow = 16 - 1;
 
              for(int i = 0; i < 3; i ++)
              {
                  for (int j = 0; j < 3; j++)
                  {
-                    OpenList.Add(searchSpace[current.element + gridRow + j]);
-                     if (Closed(current) == true)
+                    child = searchSpace[current.element + gridRow + j];
+                     if (Closed(child) == true)
                      {
                          int G = 0;
-                         int cost = currentNode.G;
-                         if (current.element == (currentNode.element - 17) || current.element == (currentNode.element -15) || current.element == (currentNode.element + 15) || current.element == (currentNode.element + 17))
+                         int cost = current.G;
+                         if (child.element == (current.element - 17) || child.element == (current.element -15) || child.element == (current.element + 15) || child.element == (current.element + 17))
                          {
                              G = cost + 71;
                          }
@@ -131,23 +132,24 @@ namespace Lemmings.Astar
                          {
                              G = cost + 50;
                          }
-                         if (Opened(current) == false)
+
+                         if (Opened(child) == false)
                          {
-                             OpenList.Add(current);
-                             current.parent = currentNode;
-                             current.G = G;
-                             current.H = Convert.ToInt32(Math.Abs(current.position.X - goalNode.position.X) + Math.Abs(current.position.Y - goalNode.position.Y));
-                             current.F = current.G + current.H;
+                             OpenList.Add(child);
+                             child.parent = current;
+                             child.G = G;
+                             child.H = Convert.ToInt32(Math.Abs(child.position.X - goalNode.position.X) + Math.Abs(child.position.Y - goalNode.position.Y));
+                             child.F = child.G + child.H;
                          }
 
                          else
                          {
-                             if (G < current.G)
+                             if (G < child.G)
                              {
-                                 current.parent = currentNode;
-                                 current.G = G;
-                                 current.H = Convert.ToInt32(Math.Abs(current.position.X - goalNode.position.X) + Math.Abs(current.position.Y - goalNode.position.Y));
-                                 current.F = current.G + current.H;
+                                 child.parent = current;
+                                 child.G = G;
+                                 child.H = Convert.ToInt32(Math.Abs(child.position.X - goalNode.position.X) + Math.Abs(child.position.Y - goalNode.position.Y));
+                                 child.F = child.G + child.H;
                              }
                          }
                      }
