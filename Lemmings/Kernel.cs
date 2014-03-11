@@ -131,7 +131,7 @@ namespace Lemmings
                 blocked.texture = Content.Load<Texture2D>("gridblue");
                 blocked.blocked = true;
             }
-            search.Search(nodeArray, start, goal, goal.texture, nodePath);
+            //search.Search(nodeArray, start, goal, goal.texture, nodePath);
 
 
             // Create a new SpriteBatch, which can be used to draw textures.

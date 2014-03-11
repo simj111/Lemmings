@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemmings", "Lemmings\Lemmings.csproj", "{8769DDAB-F2C6-49F3-A5BE-B3BA2B062135}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{909028DF-E444-4FE4-A20A-9A7A4FC1ECED}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Lemmings_Classes.vsd = ..\..\..\Downloads\Lemmings_Classes.vsd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
