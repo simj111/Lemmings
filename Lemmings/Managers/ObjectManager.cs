@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Lemmings.Objects;
 using Microsoft.Xna.Framework;
+using Lemmings.Objects;
+using Lemmings.Scene;
 
 namespace Lemmings.Managers
 {
@@ -13,6 +14,7 @@ namespace Lemmings.Managers
         #region DataMembers
         ObjectFactory factory;
         Renderer renderer;
+        SceneManager sManager;
         private IList<string> objectsToCreate = null; 
         private IList<ParentObject> objectsToDraw = null;
         private IList<SpiderEnemy>spiderlist;
@@ -23,13 +25,14 @@ namespace Lemmings.Managers
         #endregion Properties
 
         #region Constructor
-        public ObjectManager(ObjectFactory objectFactory, Renderer createdRenderer)
+        public ObjectManager(ObjectFactory objectFactory, Renderer createdRenderer, SceneManager pSceneManager)
         {
             objectsToCreate = new List<string>();
             objectsToDraw = new List<ParentObject>();
             //If we have kernel create the factory and renderer we can use it here
             factory = objectFactory;
             renderer = createdRenderer;
+            sManager = pSceneManager;
 
             //We call this method to define which are the default objects that the factory will need to create
             DefaultObjects();
@@ -77,46 +80,53 @@ namespace Lemmings.Managers
                     if (obj.Contains("Lemming") || obj.Contains("lemming"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                    else if (obj.Contains("Spider"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Floor"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Floor));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Top"))
                     {
                         factory.GetEdgeType("Top");
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Bottom"))
                     {
                         factory.GetEdgeType("Bottom");
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Left"))
                     {
                         factory.GetEdgeType("Left");
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
-                        
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Right"))
                     {
                         factory.GetEdgeType("Right");
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Gate"))
                     {
                         objectsToDraw.Add(factory.CreateObjects(ObjectType.Gate));
+                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
                     }
                     
                 }
@@ -144,13 +154,7 @@ namespace Lemmings.Managers
 
         public void UpdateEntities()
         {
-            for (int i = 0; i<objectsToDraw.Count(); i++)
-            {
-                if (objectsToDraw[i].isUpdatable == true)
-                {
-                    objectsToDraw[i].Move();
-                }
-            }
+            sManager.UpdateAllEntitiesInScene();
         
         }
 

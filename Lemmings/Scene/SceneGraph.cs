@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lemmings.Managers
+namespace Lemmings.Scene
 {
     class SceneGraph
     {

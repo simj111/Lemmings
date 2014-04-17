@@ -11,6 +11,7 @@ using Lemmings.Objects;
 using Lemmings.Interfaces;
 using Lemmings.Managers;
 using Lemmings.Astar;
+using Lemmings.Scene;
 #endregion
 
 namespace Lemmings
@@ -30,6 +31,7 @@ namespace Lemmings
         ObjectManager kObjectManager;
         ObjectFactory kObjectFactory;
         Renderer kRenderer;
+        SceneManager kSceneManager;
         AStarSearch search;
 
         Node[] nodeArray;
@@ -81,6 +83,7 @@ namespace Lemmings
             inputManager = new InputManager();
             allSheets = new List<Tuple<Texture2D, string>>();
             kObjectFactory = new ObjectFactory();
+            kSceneManager = new SceneManager();
             start = new Node();
             goal = new Node();
             blocked = new Node();
@@ -167,7 +170,7 @@ namespace Lemmings
             particleEngine2 = new ParticleEngine(textures, new Vector2(400, 240));
 
             kRenderer = new Renderer(spriteBatch, allSheets); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
-            kObjectManager = new ObjectManager(kObjectFactory, kRenderer);
+            kObjectManager = new ObjectManager(kObjectFactory, kRenderer, kSceneManager);
         }
 
         /// <summary>
