@@ -11,7 +11,7 @@ namespace Lemmings
 {
     class Renderer : IRenderer
     //Used to render the most up to date frames on screen.
-    //Gets a list of current entities that need to be drawn from manager(Not sure yet if render manager or entity manager?) NEED TO DISCUSS!
+    //Gets a list of current entities that need to be drawn from ObjectManager, which is acquired from the SceneManager
     {
         #region DataMembers
         SpriteBatch mySpriteBatch;

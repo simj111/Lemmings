@@ -16,7 +16,7 @@ namespace Lemmings.Managers
         Renderer renderer;
         SceneManager sManager;
         private IList<string> objectsToCreate = null; 
-        private IList<ParentObject> objectsToDraw = null;
+        private IList<ParentObject> defaultObjectsToDraw = null;
         private IList<SpiderEnemy>spiderlist;
         #endregion DataMembers
 
@@ -28,7 +28,7 @@ namespace Lemmings.Managers
         public ObjectManager(ObjectFactory objectFactory, Renderer createdRenderer, SceneManager pSceneManager)
         {
             objectsToCreate = new List<string>();
-            objectsToDraw = new List<ParentObject>();
+            defaultObjectsToDraw = new List<ParentObject>();
             //If we have kernel create the factory and renderer we can use it here
             factory = objectFactory;
             renderer = createdRenderer;
@@ -74,81 +74,82 @@ namespace Lemmings.Managers
             //Other objects, spider, floor etc. can be created and drawn at the same time as the first lemming however.
 
             //Goes through each string object in the objectsToCreate list and makes the factory create objects based off of it. 
-            //The object is then added to the objectsToDraw list of parent objects.
+            //The object is then added to the defaultdefaultObjectsToDraw list of parent objects.
                 foreach (string obj in objectsToCreate)
                 {
                     if (obj.Contains("Lemming") || obj.Contains("lemming"))
                     {
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Lemming));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                    else if (obj.Contains("Spider"))
                     {
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Spider));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Floor"))
                     {
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Floor));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Floor));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Top"))
                     {
                         factory.GetEdgeType("Top");
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Bottom"))
                     {
                         factory.GetEdgeType("Bottom");
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Left"))
                     {
                         factory.GetEdgeType("Left");
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Edge_Right"))
                     {
                         factory.GetEdgeType("Right");
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Edge));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
 
                     else if (obj.Contains("Gate"))
                     {
-                        objectsToDraw.Add(factory.CreateObjects(ObjectType.Gate));
-                        sManager.AddEntitiesToScene(objectsToDraw[objectsToDraw.Count - 1]);
+                        defaultObjectsToDraw.Add(factory.CreateObjects(ObjectType.Gate));
+                        sManager.AddEntitiesToScene(defaultObjectsToDraw[defaultObjectsToDraw.Count - 1]);
                     }
                     
                 }
                 objectsToCreate.Clear();
 
-                //This code is just to force the floors to appear in a different place cus josh smells
-                objectsToDraw[0].position = new Vector2(85, 550);
-                objectsToDraw[1].position = new Vector2(85, 300);
-                objectsToDraw[2].position = new Vector2(460, 300);
-                objectsToDraw[3].position = new Vector2(266, 450);
-                objectsToDraw[4].position = new Vector2(430, 550);
+                //This code is just to force the floors to appear in a different place.
+                defaultObjectsToDraw[0].position = new Vector2(85, 550);
+                defaultObjectsToDraw[1].position = new Vector2(85, 300);
+                defaultObjectsToDraw[2].position = new Vector2(460, 300);
+                defaultObjectsToDraw[3].position = new Vector2(266, 450);
+                defaultObjectsToDraw[4].position = new Vector2(430, 550);
 
-                objectsToDraw[11].position = new Vector2(115, 130);
-            
+                defaultObjectsToDraw[11].position = new Vector2(115, 130);
+                defaultObjectsToDraw.Clear(); //This list is only needed to help the creation of the default objects.
             
         }
 
+        /// <summary>
+        /// This method is used to make the renderer draw the entities that are in the SceneManagers list of objects to draw (drawingList).
+        /// </summary>
         public void CallRendererToDraw()
         {
-            renderer.DrawEntities(objectsToDraw);
-            //Needs to return a list of parent objects that are now created.
-            //These will then get added to objectsToDraw.
+            renderer.DrawEntities(sManager.drawingList);
         }
 
 
