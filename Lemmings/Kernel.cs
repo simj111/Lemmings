@@ -219,10 +219,11 @@ namespace Lemmings
 
 
 
-            for (int i = 0; i < 256; i++)
-            {
-                nodeArray[i].Draw(spriteBatch);
-            }
+            //for (int i = 0; i < 256; i++)
+            //{
+            //    nodeArray[i].Draw(spriteBatch);
+            //}
+
             //The renderer can be asked to draw things in this section i.e. renderer.DrawEntities(spriteBatch). 
             kObjectManager.CallRendererToDraw();
             particleEngine.Draw(spriteBatch);

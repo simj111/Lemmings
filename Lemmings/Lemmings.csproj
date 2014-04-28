@@ -48,14 +48,14 @@
     <Compile Include="Astar\Node.cs" />
     <Compile Include="Interfaces\IMoveableEntity.cs" />
     <Compile Include="Interfaces\IRole.cs" />
+    <Compile Include="Interfaces\ITerminate.cs" />
     <Compile Include="Objects\Edge.cs" />
     <Compile Include="Objects\Floor.cs" />
     <Compile Include="Objects\Gate.cs" />
     <Compile Include="Objects\SpiderEnemy.cs" />
     <Compile Include="Regions.cs" />
-    <Compile Include="Scene\SceneGraph.cs" />
+    <Compile Include="Scene\SceneManager.cs" />
     <Compile Include="Objects\ObjectFactory.cs" />
-    <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Managers\ObjectManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Objects\Lemming.cs" />
     <Compile Include="Objects\ParentObject.cs" />
     <Compile Include="Roles\Default.cs" />
-    <Compile Include="Scene\SceneManager.cs" />
+    <Compile Include="Scene\SceneGraph.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
