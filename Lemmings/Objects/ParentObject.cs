@@ -49,6 +49,9 @@ namespace Lemmings.Objects
         //if an object is updatable
         public abstract bool isUpdatable { get; set; }
 
+        //Object stores it's type so that we can more easily check what is interacting with what.
+        public abstract ObjectType type { get; }
+
         #endregion Properties
 
         #region Methods

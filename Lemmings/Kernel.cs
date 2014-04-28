@@ -19,6 +19,7 @@ namespace Lemmings
     /// <summary>
     /// This is the main type for your game
     /// </summary>
+
     public class Kernel : Game
     //Kernel will be used to initialise and create stuff, factory, managers etc.
     {
@@ -33,6 +34,7 @@ namespace Lemmings
         Renderer kRenderer;
         SceneManager kSceneManager;
         AStarSearch search;
+        MouseState mouseState;
 
         Node[] nodeArray;
         const int GRID_SIZE = 16;
@@ -80,7 +82,7 @@ namespace Lemmings
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            inputManager = new InputManager();
+            
             allSheets = new List<Tuple<Texture2D, string>>();
             kObjectFactory = new ObjectFactory();
             kSceneManager = new SceneManager();
@@ -88,6 +90,7 @@ namespace Lemmings
             goal = new Node();
             blocked = new Node();
 
+            
 
             search = new AStarSearch();
 
@@ -171,6 +174,7 @@ namespace Lemmings
 
             kRenderer = new Renderer(spriteBatch, allSheets); //The spritesheet and batch will definitely need to be passed in somewhere else. NEED TO DISCUSS!
             kObjectManager = new ObjectManager(kObjectFactory, kRenderer, kSceneManager);
+            inputManager = new InputManager(kObjectManager);
         }
 
         /// <summary>
@@ -191,11 +195,12 @@ namespace Lemmings
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+           
             inputManager.update();
-
+            
             // TODO: Add your update logic here
 
-            base.Update(gameTime);
+           
 
 
             particleEngine.EmitterLocation = new Vector2(675 ,516);
@@ -203,6 +208,8 @@ namespace Lemmings
             particleEngine.Update();
             particleEngine2.Update();
             kObjectManager.UpdateEntities();
+        
+            base.Update(gameTime);
         }
 
         /// <summary>

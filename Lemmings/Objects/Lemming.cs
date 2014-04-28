@@ -26,12 +26,15 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         private bool _isUpdatable;
+        private ObjectType _type;
+
         public string roleName;
         private string changeJob;
         //Need some kind of event handler to check when roleName changes. Too tired to remember syntax now :(
         public float speedX; //Horizontal movement speed of the lemming.
         public float speedY; //How fast the lemming falls.
         public IRole currentRole; //The role the lemming currently has assigned
+       
         #endregion DataMembers
 
         #region Properties
@@ -103,10 +106,15 @@ namespace Lemmings.Objects
             get { return _isUpdatable; }
             set { _isUpdatable = value; }
         }
+
+        public override ObjectType type
+        {
+            get { return _type}
+        }
         #endregion Properties
 
         #region Constructor
-        public Lemming(int ID)
+        public Lemming(int ID, ObjectType myType)
         {
             _position = new Vector2(400, 50);
             _spriteRectangle = new Rectangle(22, 0, 5, 10);
@@ -145,13 +153,13 @@ namespace Lemmings.Objects
             {
                 roleName = changeJob;
                 currentRole = new Blocker(this);
-
             }
 
         }
 
         public override void Move()
         {
+          
         }
         //Potentially something for collision and animation needs to be added into the properties and method sections.
         #endregion Methods

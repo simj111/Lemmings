@@ -9,7 +9,7 @@ using Lemmings.Interfaces;
 
 namespace Lemmings.Managers
 {
-    class ObjectManager : ITerminate
+    class ObjectManager
     //Used to manage entity creation
     {
         #region DataMembers
@@ -139,7 +139,7 @@ namespace Lemmings.Managers
                 defaultObjectsToDraw[3].position = new Vector2(266, 450);
                 defaultObjectsToDraw[4].position = new Vector2(430, 550);
 
-                defaultObjectsToDraw[11].position = new Vector2(115, 130);
+                defaultObjectsToDraw[11].position = new Vector2(500, 130);
                 defaultObjectsToDraw.Clear(); //This list is only needed to help the creation of the default objects.
             
         }
@@ -156,12 +156,6 @@ namespace Lemmings.Managers
         public void UpdateEntities()
         {
             sManager.UpdateAllEntitiesInScene();
-        
-        }
-
-        public void TerminateEntity(int entityID)
-        {
-            
         }
 
         // Public void ObjectsCollide(int objectID1, int objectID2) [Potential collision method]

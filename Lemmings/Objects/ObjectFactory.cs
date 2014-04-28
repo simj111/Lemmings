@@ -8,15 +8,15 @@ using System.Timers;
 
 
 namespace Lemmings.Objects
-{ 
+{
     public enum ObjectType //The types of objects which can be created.
-        {
-            Lemming,
-            Floor,
-            Spider,
-            Edge,
-            Gate,
-        }
+    {
+        Lemming,
+        Floor,
+        Spider,
+        Edge,
+        Gate,
+    }
     class ObjectFactory
     //Used to actually create entities and assign default properties(spritebatch, position? etc.)
     {
@@ -57,7 +57,7 @@ namespace Lemmings.Objects
                     case ObjectType.Lemming:
                         newObject = new Lemming(increaseObjectID);
                         lemmingDelay.Enabled = true;
-                        //The timer needs to go somewhere else in the program...I think
+                       
                         break;
 
                     case ObjectType.Floor:

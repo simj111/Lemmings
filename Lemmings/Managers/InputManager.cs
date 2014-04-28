@@ -16,7 +16,7 @@ namespace Lemmings.Managers
     {
         #region DataMembers
         MouseState currentState;
-       
+       private ObjectManager objman;
         int num = 0;
 
         #endregion DataMembers
@@ -26,9 +26,9 @@ namespace Lemmings.Managers
         #endregion Properties
 
         #region Constructor
-        public InputManager()
+        public InputManager(ObjectManager manager)
         {
-
+            objman = manager;
         }
         #endregion Constructor
 
@@ -42,10 +42,6 @@ namespace Lemmings.Managers
                 num += 1;
             }
         }
-        
-        
-        
-        
         
         public void update()
         {

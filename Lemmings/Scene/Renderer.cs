@@ -9,7 +9,7 @@ using Lemmings.Objects;
 
 namespace Lemmings
 {
-    class Renderer : IRenderer
+    class Renderer 
     //Used to render the most up to date frames on screen.
     //Gets a list of current entities that need to be drawn from ObjectManager, which is acquired from the SceneManager
     {

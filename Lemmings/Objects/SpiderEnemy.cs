@@ -120,9 +120,11 @@ namespace Lemmings.Objects
             _objectID = ID;
             _isUpdatable = true;
 
-            speedX = 1f;
-            speedY = 0.5f;
-            Velocity = 0;
+             lemmingposition = new Vector2(0, 0);
+
+            speedX = 8f;
+            speedY = 8f;
+            Velocity = 1;
             
         }
         #endregion Constructor
@@ -145,7 +147,7 @@ namespace Lemmings.Objects
 
         public override void Move()
         {
-            lemmingposition = new Vector2(115, 130);
+           
             direction = lemmingposition - _position;
             direction.Normalize();
 
@@ -180,8 +182,11 @@ namespace Lemmings.Objects
             vector.Y += x;
             return vector;
         }
-        
-       
+
+        public void RecieveLemmingPos(Vector2 lemmingPos)
+        {
+            lemmingposition = lemmingPos;
+        }
         
         #endregion Methods
         

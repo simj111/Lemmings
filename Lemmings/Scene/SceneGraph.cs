@@ -60,9 +60,12 @@ namespace Lemmings.Scene
         {
             //This if statement is needed to find the correct entity, in the dictionary, so that it can be properly removed from the drawingList.
             //It needs to be removed from the drawing list first because it needs to be found in the dictionary first.
-            if(drawingList.Contains(entityList[entityID]))
+            if (DoesKeyExist(entityID) == true)
             {
-                drawingList.Remove(entityList[entityID]);
+                if (drawingList.Contains(entityList[entityID]))
+                {
+                    drawingList.Remove(entityList[entityID]);
+                }
             }
             entityList.Remove(entityID);
         }
@@ -78,6 +81,7 @@ namespace Lemmings.Scene
                     // Only the objects which can be updatable are attempted to be updated.
                     if (entityList[i].isUpdatable == true)
                     {
+
                         entityList[i].Move();
                     }
                 }
