@@ -20,7 +20,8 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         private bool _isUpdatable;
-        
+        private ObjectType _type;
+
         #endregion DataMembers
 
         #region Properties
@@ -91,11 +92,16 @@ namespace Lemmings.Objects
             get { return _isUpdatable; }
             set { _isUpdatable = value; }
         }
+
+        public override ObjectType type
+        {
+            get { return _type; }
+        }
         #endregion Properties
 
         #region Constructor
 
-        public Edge(string edgeSide, int ID)
+        public Edge(string edgeSide, int ID, ObjectType myType)
         {
             switch (edgeSide)
             {
@@ -131,6 +137,7 @@ namespace Lemmings.Objects
             _isSolid = true;
             _objectID = ID;
             _isUpdatable = false;
+            _type = myType;
         }
 
         

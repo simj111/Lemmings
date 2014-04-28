@@ -21,6 +21,7 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         private bool _isUpdatable;
+        private ObjectType _type;
 
         private Vector2 direction;
         private Vector2 velocity;
@@ -105,11 +106,16 @@ namespace Lemmings.Objects
             get { return _isUpdatable; }
             set { _isUpdatable = value; }
         }
+
+        public override ObjectType type
+        {
+            get { return _type; }
+        }
         #endregion Properties
 
         #region Constructor
 
-        public SpiderEnemy(int ID)
+        public SpiderEnemy(int ID, ObjectType myType)
         {
             _position = new Vector2(625, 375);
             _spriteRectangle = new Rectangle(0, 1, 33, 32);
@@ -119,6 +125,7 @@ namespace Lemmings.Objects
             _isSolid = false;
             _objectID = ID;
             _isUpdatable = true;
+            _type = myType;
 
              lemmingposition = new Vector2(0, 0);
 

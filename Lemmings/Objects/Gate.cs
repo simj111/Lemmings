@@ -20,7 +20,7 @@ namespace Lemmings.Objects
         private bool _isSolid;
         private int _objectID;
         private bool _isUpdatable;
-        
+        private ObjectType _type;
 
         #endregion DataMembers
 
@@ -93,11 +93,16 @@ namespace Lemmings.Objects
             get { return _isUpdatable; }
             set { _isUpdatable = value; }
         }
+
+        public override ObjectType type
+        {
+            get { return _type; }
+        }
         #endregion Properties
 
         #region Constructor
 
-        public Gate(int ID)
+        public Gate(int ID, ObjectType myType)
         {
             _position = new Vector2(630, 551);
             _spriteRectangle = new Rectangle(0, 0, 102, 51);
@@ -107,6 +112,7 @@ namespace Lemmings.Objects
             _isSolid = true;
             _objectID = ID;
             _isUpdatable = false;
+            _type = myType;
             
         }
         #endregion Constructor

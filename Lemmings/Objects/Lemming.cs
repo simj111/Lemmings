@@ -109,8 +109,9 @@ namespace Lemmings.Objects
 
         public override ObjectType type
         {
-            get { return _type}
+            get { return _type; }
         }
+
         #endregion Properties
 
         #region Constructor
@@ -124,6 +125,7 @@ namespace Lemmings.Objects
             _isSolid = false;
             _objectID = ID;
             _isUpdatable = true;
+            _type = myType;
             speedX = 1f;
             speedY = 0.5f;
 

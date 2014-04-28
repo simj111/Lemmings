@@ -55,24 +55,24 @@ namespace Lemmings.Objects
                 switch (typeOfObject)
                 {
                     case ObjectType.Lemming:
-                        newObject = new Lemming(increaseObjectID);
+                        newObject = new Lemming(increaseObjectID, typeOfObject);
                         lemmingDelay.Enabled = true;
                        
                         break;
 
                     case ObjectType.Floor:
-                        newObject = new Floor(increaseObjectID);
+                        newObject = new Floor(increaseObjectID, typeOfObject);
                         break;
 
                     case ObjectType.Spider:
-                        newObject = new SpiderEnemy(increaseObjectID);
+                        newObject = new SpiderEnemy(increaseObjectID, typeOfObject);
                         break;
                       
                     case ObjectType.Edge:
-                        newObject = new Edge(edgeType, increaseObjectID);
+                        newObject = new Edge(edgeType, increaseObjectID, typeOfObject);
                         break;
                     case ObjectType.Gate:
-                        newObject = new Gate(increaseObjectID);
+                        newObject = new Gate(increaseObjectID, typeOfObject);
                         break;
                 }
                 
