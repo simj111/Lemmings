@@ -127,11 +127,6 @@ namespace Lemmings.Objects
             return base.ReturnObjectID();
         }
 
-        public void Terminate(int lemmingID)
-        {
-            //Code to terminate the current lemming based off its ID
-        }
-
         //When a mouse clicks a lemming we can make a string get passed to a lemming that says which role it needs to switch too
         //The lemming would then change it's current role to be whatever string is pased in e.g. blocker
         public void ChangeRole(string roleChange)

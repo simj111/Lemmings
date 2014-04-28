@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Lemmings.Objects;
 
 namespace Lemmings.Interfaces
 {
-   public interface IRenderer
-   //Interface used by the renderer.
-       //have no idea how this works
+    interface ITerminate
     {
+        void TerminateEntity(int entityID);
     }
 }

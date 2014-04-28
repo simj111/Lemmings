@@ -5,11 +5,12 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Lemmings.Objects;
 using Lemmings.Scene;
+using Lemmings.Interfaces;
 
 namespace Lemmings.Managers
 {
-    class ObjectManager
-    //Used to manage entity creation...and interaction? collision?
+    class ObjectManager : ITerminate
+    //Used to manage entity creation
     {
         #region DataMembers
         ObjectFactory factory;
@@ -17,7 +18,6 @@ namespace Lemmings.Managers
         SceneManager sManager;
         private IList<string> objectsToCreate = null; 
         private IList<ParentObject> defaultObjectsToDraw = null;
-        private IList<SpiderEnemy>spiderlist;
         #endregion DataMembers
 
         #region Properties
@@ -149,7 +149,7 @@ namespace Lemmings.Managers
         /// </summary>
         public void CallRendererToDraw()
         {
-            renderer.DrawEntities(sManager.drawingList);
+            renderer.DrawEntities(sManager.GetListToDraw());
         }
 
 
@@ -159,16 +159,14 @@ namespace Lemmings.Managers
         
         }
 
-
-        public void TerminateObject(int objectID, Lemming objectToTerminate)
+        public void TerminateEntity(int entityID)
         {
-            objectToTerminate.Terminate(objectID);
+            
         }
 
         // Public void ObjectsCollide(int objectID1, int objectID2) [Potential collision method]
         #endregion Methods
-        
-    
 
+       
     }
 }
