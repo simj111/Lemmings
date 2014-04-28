@@ -13,11 +13,9 @@ namespace Lemmings.Scene
     {
         #region DataMembers
         private SceneGraph sGraph;
-        private int firstLemming = 0;
-        private int lemmingKey;
-        private int spiderKey;
-        private Vector2 lemmingPosition;
+        ParentObject[] temp;
         #endregion DataMembers
+
 
         #region Properties
 
@@ -34,11 +32,6 @@ namespace Lemmings.Scene
         public void AddEntitiesToScene(ParentObject entity)
         {
             sGraph.AddEntitiesToScene(entity);
-            if (firstLemming == 0 && entity.Equals(Lemmings.Objects.ObjectType.Lemming) == true)
-            {
-                lemmingKey = entity.objectID;
-                firstLemming += firstLemming;
-            }
         }
 
         public void RemoveEntitiesFromScene(int entityID)
@@ -60,22 +53,37 @@ namespace Lemmings.Scene
 
         public void CheckCollision()
         {
-           
-            for (int e1 = 0; e1 < sGraph.entityList.Count; e1++)
+            temp = sGraph.drawingList.ToArray();
+            for (int i = 0; i < temp.Length; i++)
             {
-                for (int e2 = 0; e2 < sGraph.entityList.Count; e2++)
+                for (int j = i + 1; j < temp.Length; j++)
                 {
-                    if (sGraph.entityList[e1].boundBox.Intersects(sGraph.entityList[e2].boundBox))
-                    {
-                        ProcessCollision(sGraph.entityList[e1],sGraph.entityList[e2]);
-                    }
+
+                    checkCollision(temp[i], temp[j]);
                 }
             }
+           
+           
         }
-
+        public void checkCollision(ParentObject E1, ParentObject E2)
+        {
+            if (sGraph.DoesKeyExist(E1.objectID) == true && sGraph.DoesKeyExist(E2.objectID) == true)
+            {
+                if (E1.boundBox.Intersects(E2.boundBox))
+                {
+                    ProcessCollision(E1, E2);
+                }
+            }
+            
+        }
+       
         public void ProcessCollision(ParentObject E1, ParentObject E2)
         {
-            if (E1.Equals(Lemmings.Objects.ObjectType.Spider) == true && E2.Equals(Lemmings.Objects.ObjectType.Lemming) == true)
+            if (E1.type == ObjectType.Spider && E2.type == ObjectType.Lemming)
+            {
+                TerminateEntity(E2.objectID);
+            }
+            if(E1.type == ObjectType.Lemming && E2.type == ObjectType.Spider)
             {
                 TerminateEntity(E1.objectID);
             }
@@ -84,7 +92,8 @@ namespace Lemmings.Scene
 
         public void TerminateEntity(int entityID)
         {
-            this.RemoveEntitiesFromScene(entityID);
+            
+           this.RemoveEntitiesFromScene(entityID);
         } 
 
         #endregion Methods

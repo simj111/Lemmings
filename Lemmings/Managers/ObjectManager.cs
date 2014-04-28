@@ -138,8 +138,7 @@ namespace Lemmings.Managers
                 defaultObjectsToDraw[2].position = new Vector2(460, 300);
                 defaultObjectsToDraw[3].position = new Vector2(266, 450);
                 defaultObjectsToDraw[4].position = new Vector2(430, 550);
-
-                defaultObjectsToDraw[11].position = new Vector2(500, 130);
+                
                 defaultObjectsToDraw.Clear(); //This list is only needed to help the creation of the default objects.
             
         }

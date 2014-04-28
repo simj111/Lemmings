@@ -117,9 +117,9 @@ namespace Lemmings.Objects
         #region Constructor
         public Lemming(int ID, ObjectType myType)
         {
-            _position = new Vector2(400, 50);
+            _position = new Vector2(400, 500);
             _spriteRectangle = new Rectangle(22, 0, 5, 10);
-            _boundBox = new Rectangle(22, 0, 5, 10);
+            _boundBox = new Rectangle(400, 50, 5, 10);
             _rotation = 0;
             _spriteEffect = SpriteEffects.None;
             _isSolid = false;

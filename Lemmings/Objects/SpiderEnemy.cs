@@ -119,7 +119,7 @@ namespace Lemmings.Objects
         {
             _position = new Vector2(625, 375);
             _spriteRectangle = new Rectangle(0, 1, 33, 32);
-            _boundBox = new Rectangle(0, 1, 33, 32);
+            _boundBox = new Rectangle(625, 375, 33, 32);
             _rotation = 0;
             _spriteEffect = SpriteEffects.None;
             _isSolid = false;
@@ -160,6 +160,8 @@ namespace Lemmings.Objects
 
             Seek(position);
             _position += velocity;
+            _boundBox.X = (int)_position.X;
+            _boundBox.Y = (int)_position.Y;
 
             _rotation = (float)Math.Atan2(velocity.X, velocity.Y);
 
@@ -194,6 +196,7 @@ namespace Lemmings.Objects
         {
             lemmingposition = lemmingPos;
         }
+        
         
         #endregion Methods
         

@@ -20,6 +20,11 @@ namespace Lemmings.Scene
         //The list of objects called _drawingList is used to contain all of the objects that need to be drawn on the screen.
         //It gets updated whenever the dictionary does. I.e if the dictionary gets an entity added, then so does the drawing list.
         private List<ParentObject> _drawingList;
+
+        private int firstLemming = 0;
+        private int lemmingKey;
+        private int spiderKey;
+      
         #endregion DataMembers
 
         #region Properties
@@ -51,6 +56,16 @@ namespace Lemmings.Scene
         {
             entityList.Add(entity.objectID, entity);
             drawingList.Add(entity);
+            if (firstLemming == 0 && entity.type == ObjectType.Lemming)
+            {
+                lemmingKey = entity.objectID;
+                firstLemming += firstLemming;
+            } 
+            if (entity.type == ObjectType.Spider)
+            {
+                spiderKey = entity.objectID;
+            }
+            
         }
 
         //This method is used to remove an entity from the scene based off of it's unique ID. 
@@ -81,7 +96,15 @@ namespace Lemmings.Scene
                     // Only the objects which can be updatable are attempted to be updated.
                     if (entityList[i].isUpdatable == true)
                     {
-
+                            if (entityList[i].type == ObjectType.Spider && entityList[i].objectID == spiderKey)
+                            {
+                                if (DoesKeyExist(lemmingKey) == true)
+                                {
+                                    SpiderEnemy thisSpider = (SpiderEnemy)entityList[i];
+                                    thisSpider.RecieveLemmingPos(entityList[lemmingKey].position);
+                                    entityList[i] = thisSpider;
+                                }
+                            }
                         entityList[i].Move();
                     }
                 }
