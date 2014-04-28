@@ -19,6 +19,9 @@ namespace Lemmings.Objects
         //Selection of what sprite to use in the sprite sheet.
         public abstract Rectangle spriteRectangle { get; set; }
 
+        //Needed to create bounding boxes
+        public abstract Rectangle boundBox { get; set; }
+
         //Needed in the draw method.
         public abstract Color colour { get; }
 

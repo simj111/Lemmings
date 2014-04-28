@@ -14,6 +14,7 @@ namespace Lemmings.Objects
 
         private Vector2 _position; //Needed for the set in position override. Underscore is good code practice for private variables that are used for get and set.
         private Rectangle _spriteRectangle;
+        private Rectangle _boundBox;
         private float _rotation;
         private SpriteEffects _spriteEffect;
         private bool _isSolid;
@@ -33,6 +34,12 @@ namespace Lemmings.Objects
         {
             get { return _spriteRectangle; }
             set { _spriteRectangle = value;}
+        }
+
+        public override Rectangle boundBox
+        {
+            get { return _boundBox; }
+            set { _boundBox = value; }
         }
 
         public override Color colour
@@ -95,24 +102,28 @@ namespace Lemmings.Objects
                 case "Top":
                 _position = new Vector2(0, 0);
                 _spriteRectangle = new Rectangle(0, 0, 800, 49);
+                _boundBox = new Rectangle(0, 0, 800, 49);
                 _spriteEffect = SpriteEffects.None;
                 break;
 
                 case "Left":
                 _position = new Vector2(0, 0);
                 _spriteRectangle = new Rectangle(0, 0, 49, 600);
+                _boundBox = new Rectangle(0, 0, 49, 600); 
                 _spriteEffect = SpriteEffects.None;
                 break;
 
                 case "Right":
                 _position = new Vector2(751, 0);
                 _spriteRectangle = new Rectangle(0, 0, 49, 600);
+                _boundBox = new Rectangle(0, 0, 49, 600); 
                 _spriteEffect = SpriteEffects.FlipHorizontally;
                 break;
 
                 case "Bottom":
                 _position = new Vector2(0, 551);
                 _spriteRectangle = new Rectangle(0, 0, 800, 49);
+                _boundBox = new Rectangle(0, 0, 800, 49);
                 _spriteEffect = SpriteEffects.None;
                 break;
             }
