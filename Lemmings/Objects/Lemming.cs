@@ -27,6 +27,7 @@ namespace Lemmings.Objects
         private int _objectID;
         private bool _isUpdatable;
         private ObjectType _type;
+        private Vector2 _stop;
 
         public string roleName;
         private string changeJob;
@@ -117,18 +118,18 @@ namespace Lemmings.Objects
         #region Constructor
         public Lemming(int ID, ObjectType myType)
         {
-            _position = new Vector2(400, 500);
+            _position = new Vector2(100, 160);
             _spriteRectangle = new Rectangle(22, 0, 5, 10);
-            _boundBox = new Rectangle(400, 50, 5, 10);
+            _boundBox = new Rectangle((int)_position.X, (int)_position.Y, 5, 10);
             _rotation = 0;
             _spriteEffect = SpriteEffects.None;
             _isSolid = false;
             _objectID = ID;
             _isUpdatable = true;
             _type = myType;
-            speedX = 1f;
+            speedX = 0.7f;
             speedY = 0.5f;
-
+            _stop = new Vector2(300, 160);
             //When a lemming is first created it is in a "default" role
             roleName = "Default";
             currentRole = new Default(this) as IRole;
@@ -161,7 +162,15 @@ namespace Lemmings.Objects
 
         public override void Move()
         {
-          
+            if (_position == _stop)
+            {
+              
+            }
+            else
+            {
+                _position.X += speedX;
+                _boundBox.X = (int)_position.X;
+            }
         }
         //Potentially something for collision and animation needs to be added into the properties and method sections.
         #endregion Methods

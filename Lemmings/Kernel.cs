@@ -34,7 +34,6 @@ namespace Lemmings
         Renderer kRenderer;
         SceneManager kSceneManager;
         AStarSearch search;
-        MouseState mouseState;
 
         Node[] nodeArray;
         const int GRID_SIZE = 16;

@@ -117,7 +117,7 @@ namespace Lemmings.Objects
 
         public SpiderEnemy(int ID, ObjectType myType)
         {
-            _position = new Vector2(625, 375);
+            _position = new Vector2(300, 375);
             _spriteRectangle = new Rectangle(0, 1, 33, 32);
             _boundBox = new Rectangle(625, 375, 33, 32);
             _rotation = 0;

@@ -94,9 +94,5 @@ namespace Lemmings.Objects
       
        }
         #endregion Methods
-        
-        
-      
-          
     }
 }

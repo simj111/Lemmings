@@ -42,7 +42,7 @@ namespace Lemmings.Scene
         public void UpdateAllEntitiesInScene()
         {
             sGraph.UpdateAllEntitiesInScene();
-            CheckCollision();
+            CheckCollisionList();
         }
 
         //This method returns the list of objects that need to be drawn on the screen.
@@ -51,16 +51,16 @@ namespace Lemmings.Scene
             return sGraph.drawingList;
         }
 
-        public void CheckCollision()
+        public void CheckCollisionList()
         {
             temp = sGraph.drawingList.ToArray();
-            for (int i = 0; i < temp.Length; i++)
-            {
-                for (int j = i + 1; j < temp.Length; j++)
+			
+			foreach(ParentObject obj in temp){
+                foreach(ParentObject obj2 in temp)
                 {
-
-                    checkCollision(temp[i], temp[j]);
+                    checkCollision(obj,obj2);
                 }
+                
             }
            
            
@@ -79,13 +79,15 @@ namespace Lemmings.Scene
        
         public void ProcessCollision(ParentObject E1, ParentObject E2)
         {
-            if (E1.type == ObjectType.Spider && E2.type == ObjectType.Lemming)
+            if (E1.objectID == 5 && E2.objectID == 11)
             {
                 TerminateEntity(E2.objectID);
+                TerminateEntity(E1.objectID);
             }
-            if(E1.type == ObjectType.Lemming && E2.type == ObjectType.Spider)
+            else if (E2.objectID == 5 && E1.objectID == 11)
             {
                 TerminateEntity(E1.objectID);
+                TerminateEntity(E2.objectID);
             }
         }
        
